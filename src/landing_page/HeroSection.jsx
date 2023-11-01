@@ -12,7 +12,7 @@ const HeroSection = () => {
           Elevate Your <span className="font-bold">Workforce</span> Management
           Experience Like Never Before
         </h1>
-        <div className="flex justify-between gap-3">
+        <div className="ss:flex-row lg:flex  justify-between gap-3">
           <div className="mt-[2rem]">
             <p className="text-[20px] font-[400]">
               We seamlessly blend the power of employee empowerment with
@@ -21,7 +21,7 @@ const HeroSection = () => {
               but a driving force of growth and transformation, all made
               possible through Employee365.
             </p>
-            
+
             <button className=" bg-[#0C6CAC] hover:bg-blue-700 text-white font-bold py-2 px-[52px] rounded-md mr-4 shadow-4xl ">
               Get started
             </button>

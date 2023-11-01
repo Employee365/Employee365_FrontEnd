@@ -12,7 +12,7 @@ export default {
       }
     },
     screens: {
-      'ss': '300px',
+      'ss': '280px',
       'sm': '640px',
       // => @media (min-width: 640px) { ... }
 

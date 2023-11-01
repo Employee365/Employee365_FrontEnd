@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
+import { FaTimes } from "react-icons/fa";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
       <header className="ss:py-[3rem] px-[2rem] bg-[#E0EBF4] sm:py-[3rem] md:px-[7rem] flex justify-between items-center ">
-        <div
-          className="text-[30px] md:hidden"
-          onClick={() => setIsOpen(!isOpen)}
-        >
+        <div className="text-[30px] md:hidden" onClick={() => setIsOpen(true)}>
           <GiHamburgerMenu />
         </div>
 
@@ -55,13 +54,21 @@ const Header = () => {
       </header>
 
       {isOpen && (
-        <div className="w-full">
-        <ul className=" text-[25px] cursor-pointer font-normal">
-          <li className="text-[#0C6CAC]">Home</li>
-          <li>Pricing</li>
-          <li>Product</li>
-        </ul>
-      </div>
+        <aside className="fixed top-[0] overflow-visible z-20 w-[80vw] bg-white transform transition-transform duration-300 ease-in-out translate-20 ">
+          <div className=" px-10 flex ">
+            <button
+              className="text-[2rem] bg-transparent  border-transparent absolute top-[1rem] right-[1rem] text-gray-900 cursor-pointer"
+              onClick={() => setIsOpen(false)}
+            >
+              <FaTimes />
+            </button>
+            <ul className=" text-[25px] mt-[10rem] cursor-pointer font-normal">
+              <li className="text-[#0C6CAC] mb-6 ">Home</li>
+              <li className="mb-6">Pricing</li>
+              <li>Product</li>
+            </ul>
+          </div>
+        </aside>
       )}
     </>
   );
