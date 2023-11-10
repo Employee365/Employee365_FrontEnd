@@ -7,7 +7,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="ss:py-[3rem] px-[2rem] bg-[#E0EBF4] sm:py-[3rem] md:px-[7rem] flex justify-between items-center ">
+      <header className="ss:py-[3rem] px-[2rem] bg-[#E0EBF4] sm:py-[3rem] md: flex justify-between items-center ">
         <div className="text-[30px] md:hidden" onClick={() => setIsOpen(true)}>
           <GiHamburgerMenu />
         </div>
