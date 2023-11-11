@@ -1,8 +1,13 @@
 import React from 'react'
+import EmployeesTable from '../components/EmployeesTable'
+import { Link } from '@mui/material'
 
 const EmployeeList = () => {
   return (
-    <div>EmployeeList</div>
+    <div className=''>
+      
+      <EmployeesTable/>
+    </div>
   )
 }
 
