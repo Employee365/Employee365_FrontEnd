@@ -8,6 +8,7 @@ import Employee from "./pages/Employee";
 import NewEmployee from "./pages/NewEmployee";
 import SideBarLayOut from "./components/SideBarLayOut";
 import SignUp from "./pages/SignUp";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 const App = () => {
   return (
@@ -17,7 +18,7 @@ const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
 
-        <Route path="/" element={<SideBarLayOut />}>
+        <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<DashBoard />} />
 
           <Route path="employee" element={<EmployeeList />} />

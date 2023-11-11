@@ -6,11 +6,20 @@ import {CiSettings} from 'react-icons/ci'
 import {BsPersonVcard} from 'react-icons/bs'
 import {SlCalender} from 'react-icons/sl'
 import {LuContact} from 'react-icons/lu'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+import { getAuth } from "firebase/auth";
+
 
 
 
 const SideBar = () => {
+  const auth = getAuth();
+  const navigate = useNavigate()
+  const onlogOut = () => {
+    auth.signOut();
+    navigate("/login");
+  };
+
   return (
     <div className="bg-[#E0EBF4] w-max  ">
         <div className="flex flex-col gap-5">
@@ -36,7 +45,7 @@ const SideBar = () => {
       <div>
         <ul>
           <NavLink className="flex gap-4 items-center mb-5" ><CgProfile/>Profile</NavLink>
-          <NavLink className="flex gap-4 items-center mb-5"><CiSettings/>Setting</NavLink>
+          <p className="flex gap-4 items-center mb-5" onClick={onlogOut}><CiSettings/>Setting</p>
         </ul>
       </div>
         </div>
