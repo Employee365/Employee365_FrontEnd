@@ -1,11 +1,13 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
+import { AuthContext } from "../components/AuthContext";
 // import { toast } from "react-toastify";
 
 const Login = () => {
   const navigate = useNavigate()
+  const {dispatch} = useContext(AuthContext)
 
   const [formData, setFormData] = useState({
     email: "",
@@ -28,8 +30,10 @@ const onSubmit = async (e) => {
   try{
     const auth = getAuth()
     const userCredential = await signInWithEmailAndPassword(auth,email,password)
-    if(userCredential.user){
-      navigate("/dashboard")
+    const user = userCredential.user
+    if(user){
+      dispatch({type:'LOGIN',payload:user})
+      navigate("/")
     }
 
 
@@ -42,7 +46,7 @@ const onSubmit = async (e) => {
 
   return (
     <section>
-      <h1 className="text-3xl text-center mt-6 font-bold ">Sign In</h1>
+      <h1 className="text-3xl text-center mt-6 font-bold ">Log-In</h1>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto gap-20">
         <div className="w-full md:w-[67%] lg:w-[40%]  p-[2rem] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
           <form onSubmit={onSubmit}>

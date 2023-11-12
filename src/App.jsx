@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import LandingPage from "./landing_page/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
@@ -9,14 +9,18 @@ import NewEmployee from "./pages/NewEmployee";
 import SideBarLayOut from "./components/SideBarLayOut";
 import SignUp from "./pages/SignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
+import ForgotPassword from "./pages/ForgetPassword";
+import { AuthContext } from "./components/AuthContext";
 
 const App = () => {
+  
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/home" element={<LandingPage />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<DashBoard />} />

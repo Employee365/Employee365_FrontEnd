@@ -3,6 +3,7 @@ import { GiPlainCircle } from "react-icons/gi";
 import HeroRightContent from "./HeroRightContent";
 import HeroContentUpper from "./HeroContentUpper";
 import HeroContentBottom from "./HeroContentBottom";
+import { Link } from "react-router-dom";
 
 const HeroSection = () => {
   return (
@@ -21,10 +22,11 @@ const HeroSection = () => {
               but a driving force of growth and transformation, all made
               possible through Employee365.
             </p>
-
+            <Link to='/signUp'>
             <button className=" bg-[#0C6CAC] hover:bg-blue-700 text-white font-bold py-2 px-[52px] rounded-md mr-4 shadow-4xl ">
               Get started
             </button>
+            </Link>
             <button className=" bg-white hover:bg-blue-700 text-black font-bold py-2 px-[52px] rounded-md border-2  shadow-4xl  border-black">
               Pricing Plan
             </button>

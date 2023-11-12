@@ -7,7 +7,7 @@ import venture from './assets/venture.png'
 
 const Partner = () => {
   return (
-    <main className='flex justify-center  items-center flex-col mt-[5rem]'>
+    <main id='product' className='flex justify-center  items-center flex-col mt-[5rem]'>
 
         <p className='text-[25px] font-[400]'>We’re hosted on Amazon Web Services and we’ve worked with top companies.</p>
 

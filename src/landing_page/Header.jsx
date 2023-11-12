@@ -8,7 +8,7 @@ const Header = () => {
 
   return (
     <>
-      <header className="ss:py-[3rem] px-[2rem] bg-[#E0EBF4] sm:py-[3rem] md: flex justify-between items-center ">
+      <header className="ss:py-[3rem] px-[2rem]  bg-[#E0EBF4] sm:py-[1rem] md: flex justify-between items-center ">
         <div className="text-[30px] md:hidden" onClick={() => setIsOpen(true)}>
           <GiHamburgerMenu />
         </div>
@@ -48,7 +48,7 @@ const Header = () => {
         </div>
 
         <div>
-          <Link to='/login' className="ss:text-[15px] sm:text-[25px] font-bold ss:rounded-[10px]  sm:rounded-[15px] bg-white shadow-4xl ss:py-[7px] ss:px-[20px]   sm:py-[18px] sm:px-[64px] inline-block">
+          <Link to='/login' className="ss:text-[15px] sm:text-[25px] font-bold ss:rounded-[10px]  sm:rounded-[15px] bg-white shadow-4xl ss:py-[7px] ss:px-[20px]   sm:py-[10px] sm:px-[50px] inline-block hover:bg-gray-50 transition-all ease-in-out duration-150">
             Login
           </Link>
         </div>
@@ -64,9 +64,9 @@ const Header = () => {
               <FaTimes />
             </button>
             <ul className=" text-[25px] mt-[10rem] cursor-pointer font-normal">
-              <li className="text-[#0C6CAC] mb-6 ">Home</li>
-              <li className="mb-6">Pricing</li>
-              <li>Product</li>
+              <li className="text-[#0C6CAC] mb-6 "><a href="#home">Home</a> </li>
+              <li className="mb-6"><a href="#pricing">Pricing</a></li>
+              <li><a href="#product">Product</a></li>
             </ul>
           </div>
         </aside>
