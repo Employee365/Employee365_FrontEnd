@@ -9,7 +9,7 @@ const SideBarLayOut = () => {
       <div>
         <Header/>
       </div>
-    <div className='flex gap-7'>
+    <div className='flex'>
         <div className=''>
 
         <SideBar />

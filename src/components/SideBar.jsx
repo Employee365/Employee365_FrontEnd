@@ -56,7 +56,7 @@ const SideBar = () => {
               <BsPersonVcard /> Employees
             </NavLink>
             <NavLink
-              to="employee"
+              to="task"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"

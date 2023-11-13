@@ -11,6 +11,8 @@ import SignUp from "./pages/SignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
 import ForgotPassword from "./pages/ForgetPassword";
 import { AuthContext } from "./components/AuthContext";
+import TaskManagement from "./pages/TaskManagement";
+import NewTask from "./pages/NewTask";
 
 const App = () => {
   
@@ -28,6 +30,9 @@ const App = () => {
           <Route path="employee" element={<EmployeeList />} />
           <Route path="employee/:employeeId" element={<Employee />} />
           <Route path="newEmployee" element={<NewEmployee />} />
+
+          <Route path="task" element={<TaskManagement/>}/>
+          <Route path="newTask" element={<NewTask/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
