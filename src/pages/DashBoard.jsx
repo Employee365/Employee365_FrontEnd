@@ -8,7 +8,7 @@ const DashBoard = () => {
   return (
     <>
     <div className='flex-1 bg-red-200'>DashBoard</div>
-    <p>{currentUser.uid}</p>
+    {/* <p>{currentUser.uid}</p> */}
     </>
   )
 }

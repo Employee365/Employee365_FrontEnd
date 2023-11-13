@@ -1,5 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
+import EmployeeDetail from '../components/EmployeeDetail';
 
 const Employee = ({data}) => {
   const params = useParams()
@@ -7,7 +8,11 @@ const Employee = ({data}) => {
   console.log(params);
 
   return (
-    <div>Employee</div>
+    <div>
+        <EmployeeDetail/>
+    </div>
+    /* Details */
+    
   )
 }
 

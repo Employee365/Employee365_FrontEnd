@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import world from "../assets/world.png";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
@@ -8,14 +8,19 @@ import { SlCalender } from "react-icons/sl";
 import { LuContact } from "react-icons/lu";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
+import { AuthContext } from "./AuthContext";
 
 const SideBar = () => {
   const auth = getAuth();
   const navigate = useNavigate();
+  const {dispatch} = useContext(AuthContext)
   const onlogOut = () => {
-    auth.signOut();
+    dispatch({type:'LOGOUT',payload:user})
     navigate("/login");
+
+   
   };
+  /*  */
 
   return (
     <div className="bg-[#E0EBF4] w-max h-screen ">
@@ -51,6 +56,17 @@ const SideBar = () => {
             >
               
               <BsPersonVcard /> Employees
+            </NavLink>
+            <NavLink
+              to="employee"
+              className={({ isActive }) =>
+                isActive
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[1rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              }
+            >
+              
+              <BsPersonVcard /> Task Management
             </NavLink>
             <NavLink to='candidate' className={({ isActive }) =>
                 isActive
