@@ -15,10 +15,8 @@ const SideBar = () => {
   const navigate = useNavigate();
   const {dispatch} = useContext(AuthContext)
   const onlogOut = () => {
-    dispatch({type:'LOGOUT',payload:user})
+    dispatch({type:'LOGOUT'})
     navigate("/login");
-
-   
   };
   /*  */
 
