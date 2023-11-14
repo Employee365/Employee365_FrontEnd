@@ -12,7 +12,8 @@ import {
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
 
-const NewTask = () => {
+const NewTask = ({data,setData}) => {
+  
   const [file, setFile] = useState("");
   const [percentage,setPercentage] = useState(null)
   const auth = getAuth();
@@ -21,17 +22,18 @@ const NewTask = () => {
   const adminId = currentUser.uid
 
   const [formData, setFormData] = useState({
-    username: "",
-    FullName: "",
-    email: "",
-    password: "",
-    number: "",
-    address: "",
-    country: "",
-    id:new Date().getTime()
+    taskName: "",
+    assignedTo: "",
+    startDate: "",
+    endDate: "",
+    status: "",
+    description: "",
+  
   });
-  const { username, FullName, email, password, address, country, number } =
+  const {taskName,assignedTo,startDate,endDate,status,description} =
     formData;
+
+    console.log(formData);
 
   
   const handleChange = (e) => {
@@ -67,19 +69,23 @@ const NewTask = () => {
                 <input
                   className="w-[100%]  "
                   type="text"
-                  value={username}
-                  id="username"
+                  value={taskName}
+                  id="taskName"
                   required
                   onChange={handleChange}
-                  placeholder="john-doe"
+                  placeholder="Enter Task Name"
                 />
               </div>
               <div className="w-[40%] ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
                   Assign To
                 </label>
-                <select name="" id="" className="w-[100%]">
-                  <option value="">Taiwo</option>
+                <select value={assignedTo} id="assignedTo" onChange={handleChange} className="w-[100%]">
+                  {data.map((item)=>{
+                      return(
+                        <option key={item.id} >{item.FullName}</option>
+                      )  
+                  }) }
                 </select>
               </div>
               <div className="w-[40%] border-b-2 ">
@@ -89,11 +95,11 @@ const NewTask = () => {
                 <input
                   className="w-[100%]  "
                   type="date"
-                  value={email}
-                  id="email"
+                  value={startDate}
+                  id="startDate"
                   required
                   onChange={handleChange}
-                  placeholder="JohnDoe@gmail.com"
+                 
                 />
               </div>
               <div className="w-[40%] border-b-2 ">
@@ -103,11 +109,11 @@ const NewTask = () => {
                 <input
                   className="w-[100%]  "
                   type="date"
-                  value={number}
-                  id="number"
+                  value={endDate}
+                  id="endDate"
                   required
                   onChange={handleChange}
-                  placeholder="+234 08181138489"
+                 
                 />
               </div>
 
@@ -115,17 +121,17 @@ const NewTask = () => {
                 <label className="flex items-center gap-[10px]" htmlFor="">
                   Status
                 </label>
-                <select className="w-[50%]" name="" id="">
-                  <option value="">Active</option>
-                  <option value="">Pending</option>
-                  <option value="">Done</option>
+                <select value={status} onChange={handleChange} id='status' className="w-[50%]" >
+                  <option value='Active'>Active</option>
+                  <option value="Pending">Pending</option>
+                  <option value="Done">Done</option>
                 </select>
               </div>
               <div className="w-[90%] border-b-2 ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
                   Description
                 </label>
-                <textarea className="w-full" name="" id="" cols="30" rows=""></textarea>
+                <textarea className="w-full" value={description} onChange={handleChange} id="description" cols="30" rows=""></textarea>
               </div>
               
               

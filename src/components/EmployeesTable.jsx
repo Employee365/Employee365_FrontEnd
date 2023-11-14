@@ -1,52 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
-import { db } from "../firebase.config";
 import { DataGrid } from "@mui/x-data-grid";
 import { userColumns, userRows } from "../FakeData";
 import { Link } from "react-router-dom";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDocs,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
-import { getAuth } from "firebase/auth";
-import { AuthContext } from "./AuthContext";
 
-const EmployeesTable = () => {
-  const [data, setData] = useState([]);
-  const auth = getAuth();
-  const {currentUser} = useContext(AuthContext)
-  console.log(
-    auth.currentUser.uid,
-    auth.currentUser.displayName,
-    auth.currentUser.email
-  );
-  useEffect(() => {
-    const fetchEmployeeData = async () => {
-      let list = [];
-      try {
-        const employeeRef = collection(db, "employee");
-        const q = query(
-          employeeRef,
-          where("userRef", "==", currentUser.uid),
-          orderBy("timestamp", "desc")
-        );
-        const querrySnap = await getDocs(q);
-
-        querrySnap.forEach((doc) => {
-          return list.push({ id: doc.id, ...doc.data() });
-        });
-        console.log(list);
-        setData(list);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchEmployeeData();
-  }, []);
+const EmployeesTable = ({data,setData}) => {
+ 
 
   const handleDelete = async (id) => {
     try {

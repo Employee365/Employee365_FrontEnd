@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import LandingPage from "./landing_page/LandingPage";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./pages/Login";
@@ -13,8 +13,52 @@ import ForgotPassword from "./pages/ForgetPassword";
 import { AuthContext } from "./components/AuthContext";
 import TaskManagement from "./pages/TaskManagement";
 import NewTask from "./pages/NewTask";
+import { db } from "./firebase.config";
+
+import {
+  collection,
+  deleteDoc,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  where,
+} from "firebase/firestore";
+import { getAuth } from "firebase/auth";
+
 
 const App = () => {
+  const [data, setData] = useState([]);
+  const auth = getAuth();
+  const {currentUser} = useContext(AuthContext)
+ /*  console.log(
+    auth.currentUser.uid,
+    auth.currentUser.displayName,
+    auth.currentUser.email
+  ); */
+  useEffect(() => {
+    const fetchEmployeeData = async () => {
+      let list = [];
+      try {
+        const employeeRef = collection(db, "employee");
+        const q = query(
+          employeeRef,
+          where("userRef", "==", currentUser.uid),
+          orderBy("timestamp", "desc")
+        );
+        const querrySnap = await getDocs(q);
+
+        querrySnap.forEach((doc) => {
+          return list.push({ id: doc.id, ...doc.data() });
+        });
+        console.log(list);
+        setData(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchEmployeeData();
+  }, []);
   
   return (
     <BrowserRouter>
@@ -27,12 +71,12 @@ const App = () => {
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<DashBoard />} />
 
-          <Route path="employee" element={<EmployeeList />} />
+          <Route path="employee" element={<EmployeeList data={data} setData={setData} />} />
           <Route path="employee/:employeeId" element={<Employee />} />
-          <Route path="newEmployee" element={<NewEmployee />} />
+          <Route path="newEmployee" element={<NewEmployee  />} />
 
           <Route path="task" element={<TaskManagement/>}/>
-          <Route path="newTask" element={<NewTask/>}/>
+          <Route path="newTask" element={<NewTask data={data} setData={setData}/>}/>
         </Route>
       </Routes>
     </BrowserRouter>
