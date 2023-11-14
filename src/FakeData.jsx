@@ -8,9 +8,11 @@ export const userColumns = [
             </div>
         )
     }},
-    {field:'email',headerName:'email',width:200},
-    {field:'role',headerName:'Role',width:200},
-    {field:'activity',headerName:'Recent Activity',width:200},
+    {field:'email',headerName:'email',width:100},
+    {field:'projectTitle',headerName:'Title',width:100},
+    {field:'role',headerName:'Role',width:100},
+    {field:'status',headerName:'Status',width:100},
+    {field:'deadline',headerName:'Deadline',width:100},
 ]
 
 export const userData = [
@@ -89,6 +91,7 @@ export const userData = [
       role: "Marketing",
       activity: "5 mins ago",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -98,6 +101,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jojhdrhgjsdngdvbsdgbhjdhjdgbhn@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -107,6 +111,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jon@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -116,6 +121,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jon@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -125,6 +131,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jon@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -134,6 +141,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jon@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -143,6 +151,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jon@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -152,6 +161,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jon@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -161,6 +171,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jon@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
     {
@@ -170,6 +181,7 @@ export const userData = [
         "https://images.pexels.com/photos/1152994/pexels-photo-1152994.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       email: "jon@gmail.com",
       status: "active",
+      projectTitle:'Fix Front End Issue',
       transaction: "$120.00",
     },
   ];
@@ -182,6 +194,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -191,6 +204,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -200,6 +214,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -209,6 +224,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -218,6 +234,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -227,6 +244,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -236,6 +254,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -245,6 +264,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -254,6 +274,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
     {
@@ -263,6 +284,7 @@ export const userData = [
         "https://images.pexels.com/photos/7156886/pexels-photo-7156886.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500",
       stock: 123,
       status: "active",
+      projectTitle:'Fix Front End Issue',
       price: "$120.00",
     },
   ];

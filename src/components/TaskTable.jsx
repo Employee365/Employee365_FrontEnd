@@ -94,7 +94,7 @@ const TaskTable = () => {
         </Link>
       </div>
       <DataGrid
-        rows={data}
+        rows={userRows}
         columns={userColumns.concat(actionColumn)}
         initialState={{
           pagination: {

@@ -56,16 +56,16 @@ const NewTask = () => {
           
           <div className="right flex-1">
             <form
-              className="flex flex-wrap justify-around gap-[30px]"
+              className="flex flex-wrap justify-between gap-[10px]"
               onSubmit={handleAdd}
             >
               
-              <div className="w-[40%] border-b-2 border-gray-500">
+              <div className="w-[40%] border-b-2 ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  UserName
+                  Task Name
                 </label>
                 <input
-                  className="w-[100%] border-none "
+                  className="w-[100%]  "
                   type="text"
                   value={username}
                   id="username"
@@ -74,27 +74,21 @@ const NewTask = () => {
                   placeholder="john-doe"
                 />
               </div>
-              <div className="w-[40%] border-b-2 border-gray-500">
+              <div className="w-[40%] ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  Name and Surnmae
+                  Assign To
                 </label>
-                <input
-                  className="w-[100%] border-none "
-                  type="text"
-                  value={FullName}
-                  id="FullName"
-                  required
-                  onChange={handleChange}
-                  placeholder="John DOe"
-                />
+                <select name="" id="" className="w-[100%]">
+                  <option value="">Taiwo</option>
+                </select>
               </div>
-              <div className="w-[40%] border-b-2 border-gray-500">
+              <div className="w-[40%] border-b-2 ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  Email
+                  Start Date
                 </label>
                 <input
-                  className="w-[100%] border-none "
-                  type="text"
+                  className="w-[100%]  "
+                  type="date"
                   value={email}
                   id="email"
                   required
@@ -102,13 +96,13 @@ const NewTask = () => {
                   placeholder="JohnDoe@gmail.com"
                 />
               </div>
-              <div className="w-[40%] border-b-2 border-gray-500">
+              <div className="w-[40%] border-b-2 ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  Phone Number
+                  End Date
                 </label>
                 <input
-                  className="w-[100%] border-none "
-                  type="text"
+                  className="w-[100%]  "
+                  type="date"
                   value={number}
                   id="number"
                   required
@@ -116,49 +110,27 @@ const NewTask = () => {
                   placeholder="+234 08181138489"
                 />
               </div>
-              <div className="w-[40%] border-b-2 border-gray-500">
+
+              <div className="w-[50%] mr-[25rem]">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  Password
+                  Status
                 </label>
-                <input
-                  className="w-[100%] border-none"
-                  type="password"
-                  id="password"
-                  value={password}
-                  required
-                  onChange={handleChange}
-                />
+                <select className="w-[50%]" name="" id="">
+                  <option value="">Active</option>
+                  <option value="">Pending</option>
+                  <option value="">Done</option>
+                </select>
               </div>
-              <div className="w-[40%] border-b-2 border-gray-500">
+              <div className="w-[90%] border-b-2 ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  Address
+                  Description
                 </label>
-                <input
-                  className="w-[100%] border-none border-b-[2px] border-s-gray-600 border-gray-600"
-                  type="text"
-                  id="address"
-                  value={address}
-                  required
-                  onChange={handleChange}
-                  placeholder="23,Ogunjobi"
-                />
+                <textarea className="w-full" name="" id="" cols="30" rows=""></textarea>
               </div>
-              <div className="w-[40%] border-b-2 border-gray-500">
-                <label className="flex items-center gap-[10px]" htmlFor="">
-                  Country
-                </label>
-                <input
-                  className="w-[100%] border-none "
-                  type="text"
-                  id="country"
-                  value={country}
-                  required
-                  placeholder="Nigeria"
-                  onChange={handleChange}
-                />
-              </div>
+              
+              
               <button
-                className={`w-[150px] p-[10px] border-none  text-white font-bold mt-[10px] ${percentage !== null ? 'bg-teal-100 cursor-not-allowed': "bg-teal-400"}`}
+                className={`w-[150px] h-[50px] p-[10px]   text-white font-bold ${percentage !== null ? 'bg-teal-100 cursor-not-allowed': "bg-teal-400"}`}
                 type="submit"
                 disabled={percentage !== null && percentage < 100}
               >
@@ -169,6 +141,7 @@ const NewTask = () => {
         </div>
       </div>
     </div>
+
   );
 };
 
