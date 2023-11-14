@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { db } from "../firebase.config";
 import { DataGrid } from "@mui/x-data-grid";
-import { userColumns, userRows } from "../FakeData";
+import { taskColumns, userRows } from "../FakeData";
 import { Link } from "react-router-dom";
 import {
   collection,
@@ -17,6 +17,7 @@ import { AuthContext } from "./AuthContext";
 
 const TaskTable = () => {
   const [data, setData] = useState([]);
+  console.log(data);
   const auth = getAuth();
   const {currentUser} = useContext(AuthContext)
   /* console.log(
@@ -28,7 +29,7 @@ const TaskTable = () => {
     const fetchEmployeeData = async () => {
       let list = [];
       try {
-        const employeeRef = collection(db, "employee");
+        const employeeRef = collection(db, "tasks");
         const q = query(
           employeeRef,
           where("userRef", "==", currentUser.uid),
@@ -50,7 +51,7 @@ const TaskTable = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, "employee", id));
+      await deleteDoc(doc(db, "tasks", id));
       setData(data.filter((item) => item.id !== id));
       console.log(id);
     } catch (err) {
@@ -61,7 +62,7 @@ const TaskTable = () => {
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 130,
       renderCell: (params) => {
         return (
           <div className="flex items-center gap-3">
@@ -94,8 +95,8 @@ const TaskTable = () => {
         </Link>
       </div>
       <DataGrid
-        rows={userRows}
-        columns={userColumns.concat(actionColumn)}
+        rows={data}
+        columns={taskColumns.concat(actionColumn)}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 5 },

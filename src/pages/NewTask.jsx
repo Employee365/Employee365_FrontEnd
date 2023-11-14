@@ -1,7 +1,7 @@
 import React, { useState,useEffect, useContext } from "react";
 import { db } from "../firebase.config";
 import { BsImage } from "react-icons/bs";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
+import { addDoc, collection, doc, serverTimestamp, setDoc } from "firebase/firestore";
 import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
 import {
   getStorage,
@@ -14,28 +14,30 @@ import { AuthContext } from "../components/AuthContext";
 
 const NewTask = ({data,setData}) => {
   
-  const [file, setFile] = useState("");
-  const [percentage,setPercentage] = useState(null)
+
   const auth = getAuth();
+  // console.log('auth',auth.currentUser.uid);
   const navigate = useNavigate()
   const {currentUser} = useContext(AuthContext)
   const adminId = currentUser.uid
 
   const [formData, setFormData] = useState({
     taskName: "",
-    assignedTo: "",
+    assignedTo: `${data[0].FullName}`,
     startDate: "",
     endDate: "",
-    status: "",
+    status: "Active",
     description: "",
   
   });
   const {taskName,assignedTo,startDate,endDate,status,description} =
     formData;
-
     console.log(formData);
-
-  
+    console.log();
+    const filterData = data.filter((filter)=> filter.FullName === assignedTo)
+    console.log(filterData);
+    
+    
   const handleChange = (e) => {
     setFormData((prev) => ({
       ...prev,
@@ -44,6 +46,27 @@ const NewTask = ({data,setData}) => {
   };
   const handleAdd = async (e) => {
     e.preventDefault();
+    try{
+      if(startDate > endDate ){
+        console.log('Start date must be less than end date');
+        return
+      }
+       // Spreading the value from the input field
+       const formDataCopy = {
+        ...formData,
+        userRef: adminId,
+        employeeId:filterData[0].id,
+        avatar: filterData[0].avatar
+       
+      };
+      
+      formDataCopy.timestamp = serverTimestamp();
+      const docRef = await addDoc(collection(db, "tasks"), formDataCopy);
+      
+      navigate("/task");
+    }catch(error){
+      console.log(error.message)
+    }
     
   };
   return (
@@ -136,11 +159,11 @@ const NewTask = ({data,setData}) => {
               
               
               <button
-                className={`w-[150px] h-[50px] p-[10px]   text-white font-bold ${percentage !== null ? 'bg-teal-100 cursor-not-allowed': "bg-teal-400"}`}
+                className="w-[150px] h-[50px] p-[10px] rounded-xl hover:bg-teal-700 transition-all ease-in-out duration-200  text-white font-bold bg-teal-400"
                 type="submit"
-                disabled={percentage !== null && percentage < 100}
+               
               >
-                Send
+                Add Task
               </button>
             </form>
           </div>

@@ -14,6 +14,25 @@ export const userColumns = [
     {field:'status',headerName:'Status',width:100},
     {field:'deadline',headerName:'Deadline',width:100},
 ]
+export const taskColumns = [
+    { field: 'id', headerName: 'ID', width: 100 },
+    {filed:"avatar",headerName:'User',width:50, renderCell:(params)=>{
+      return(
+          <div className='flex items-center'>
+              <img src={params.row.avatar} alt="avatar" className="w-[32px] h-[32px] rounded-full object-cover mr-[20px]" />
+              {params.row.username}
+          </div>
+      )
+  }},
+    { field: 'assignedTo', headerName: 'Assigned To', width: 150 },
+    {field:'taskName',headerName:'Title',width:100},
+    {field:'startDate',headerName:'StartDate',width:100},
+    {field:'endDate',headerName:'endDate',width:100},
+
+    {field:'role',headerName:'Role',width:100},
+    {field:'status',headerName:'Status',width:100},
+    {field:'deadline',headerName:'Deadline',width:100},
+]
 
 export const userData = [
     {

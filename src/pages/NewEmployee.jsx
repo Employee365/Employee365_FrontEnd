@@ -1,8 +1,12 @@
-import React, { useState,useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { db } from "../firebase.config";
 import { BsImage } from "react-icons/bs";
 import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
 import {
   getStorage,
   ref,
@@ -14,11 +18,11 @@ import { AuthContext } from "../components/AuthContext";
 
 const NewEmployee = () => {
   const [file, setFile] = useState("");
-  const [percentage,setPercentage] = useState(null)
+  const [percentage, setPercentage] = useState(null);
   const auth = getAuth();
-  const navigate = useNavigate()
-  const {currentUser} = useContext(AuthContext)
-  const adminId = currentUser.uid
+  const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
+  const adminId = currentUser.uid;
 
   const [formData, setFormData] = useState({
     username: "",
@@ -28,7 +32,6 @@ const NewEmployee = () => {
     number: "",
     address: "",
     country: "",
-    id:new Date().getTime()
   });
   const { username, FullName, email, password, address, country, number } =
     formData;
@@ -47,7 +50,7 @@ const NewEmployee = () => {
           const progress =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
           console.log("Upload is " + progress + "% done");
-          setPercentage(progress)
+          setPercentage(progress);
           switch (snapshot.state) {
             case "paused":
               console.log("Upload is paused");
@@ -65,8 +68,8 @@ const NewEmployee = () => {
           // Handle successful uploads on complete
           // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-            setFormData((prev)=> ({...prev,avatar:downloadURL}))
-            setPercentage(null)
+            setFormData((prev) => ({ ...prev, avatar: downloadURL }));
+            setPercentage(null);
           });
         }
       );
@@ -83,24 +86,27 @@ const NewEmployee = () => {
   const handleAdd = async (e) => {
     e.preventDefault();
     try {
-      const employeeAuth = getAuth()
+      const employeeAuth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(
         employeeAuth,
         email,
         password
       );
-      
+
       const user = userCredential.user;
-      
-    
+
       // Spreading the value from the input field
-      const formDataCopy = { ...formData, userRef: adminId };
+      const formDataCopy = {
+        ...formData,
+        userRef: adminId,
+        id: new Date().getTime(),
+      };
       // Removing the password to save in DB for security reasons
       delete formDataCopy.password;
       formDataCopy.timestamp = serverTimestamp();
       await setDoc(doc(db, "employee", user.uid), formDataCopy);
       employeeAuth.signOut();
-    navigate("/");
+      navigate("/");
     } catch (error) {
       console.log(error.message);
     }
@@ -241,7 +247,11 @@ const NewEmployee = () => {
                 />
               </div>
               <button
-                className={`w-[150px] p-[10px] border-none  text-white font-bold mt-[10px] ${percentage !== null ? 'bg-teal-100 cursor-not-allowed': "bg-teal-400"}`}
+                className={`w-[150px] p-[10px] border-none  text-white font-bold mt-[10px] ${
+                  percentage !== null
+                    ? "bg-teal-100 cursor-not-allowed"
+                    : "bg-teal-400"
+                }`}
                 type="submit"
                 disabled={percentage !== null && percentage < 100}
               >

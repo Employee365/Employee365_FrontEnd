@@ -25,12 +25,15 @@ import {
   where,
 } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
+import { Spinner } from "flowbite-react";
+import Loader from "./components/Loader";
 
 
 const App = () => {
   const [data, setData] = useState([]);
   const auth = getAuth();
   const {currentUser} = useContext(AuthContext)
+  const [isLoading,setIsLoading] = useState(false)
  /*  console.log(
     auth.currentUser.uid,
     auth.currentUser.displayName,
@@ -40,6 +43,7 @@ const App = () => {
     const fetchEmployeeData = async () => {
       let list = [];
       try {
+        setIsLoading(true)
         const employeeRef = collection(db, "employee");
         const q = query(
           employeeRef,
@@ -53,13 +57,18 @@ const App = () => {
         });
         console.log(list);
         setData(list);
+        setIsLoading(false)
       } catch (err) {
         console.log(err);
       }
     };
     fetchEmployeeData();
   }, []);
-  
+  if(isLoading){
+    return (
+      <Loader/>
+    )
+  }
   return (
     <BrowserRouter>
       <Routes>

@@ -37,8 +37,8 @@ const SideBar = () => {
               to="/"
               className={({ isActive }) =>
                 isActive
-                  ? " flex gap-4 items-center  bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[1rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+                  ? " flex gap-4 items-center  bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
               }
             >
               
@@ -48,8 +48,8 @@ const SideBar = () => {
               to="employee"
               className={({ isActive }) =>
                 isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[1rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
               }
             >
               
@@ -59,8 +59,8 @@ const SideBar = () => {
               to="task"
               className={({ isActive }) =>
                 isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[1rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
               }
             >
               
@@ -68,20 +68,38 @@ const SideBar = () => {
             </NavLink>
             <NavLink to='candidate' className={({ isActive }) =>
                 isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[1rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
               }>
               
               <LuContact /> Candidate
             </NavLink>
             <NavLink to='schedule' className={({ isActive }) =>
                 isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[1rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
               }>
               
               <SlCalender />
               Schedule set
+            </NavLink>
+            <NavLink to='schedule' className={({ isActive }) =>
+                isActive
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              }>
+              
+              <SlCalender />
+              Attendance
+            </NavLink>
+            <NavLink to='schedule' className={({ isActive }) =>
+                isActive
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              }>
+              
+              <SlCalender />
+              Leave
             </NavLink>
           </ul>
         </div>
@@ -90,16 +108,16 @@ const SideBar = () => {
           <ul>
             <NavLink to='profile' className={({ isActive }) =>
                 isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[1rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
               }>
               <CgProfile />
               Profile
             </NavLink>
             <NavLink to='settings' className={({ isActive }) =>
                 isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.7rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[1rem] px-[1rem] mb-2  hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] mb-2  hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
               } onClick={onlogOut}>
               <CiSettings />
               Setting
