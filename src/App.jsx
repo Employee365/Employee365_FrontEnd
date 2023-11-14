@@ -64,15 +64,11 @@ const App = () => {
     };
     fetchEmployeeData();
   }, []);
-  if(isLoading){
-    return (
-      <Loader/>
-    )
-  }
+  
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        <Route path="/home" element={<LandingPage />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
@@ -80,7 +76,7 @@ const App = () => {
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<DashBoard />} />
 
-          <Route path="employee" element={<EmployeeList data={data} setData={setData} />} />
+          <Route path="employee" element={<EmployeeList data={data} setData={setData} isLoading={isLoading} />} />
           <Route path="employee/:employeeId" element={<Employee />} />
           <Route path="newEmployee" element={<NewEmployee  />} />
 
