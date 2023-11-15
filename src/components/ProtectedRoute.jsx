@@ -11,7 +11,7 @@ const ProtectedRoute = () => {
   const {currentUser} = useContext(AuthContext)
   console.log(currentUser);
     
-  return currentUser ? <SideBarLayOut/>:<Navigate to='/login'/>
+  return currentUser ? <SideBarLayOut/>:<Navigate to='/loginOption'/>
 }
 
 export default ProtectedRoute

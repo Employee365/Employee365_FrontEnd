@@ -27,6 +27,12 @@ import {
 import { getAuth } from "firebase/auth";
 import { Spinner } from "flowbite-react";
 import Loader from "./components/Loader";
+import Attendance from "./pages/Attendance";
+import LoginOption from "./pages/LoginOption";
+import EmployeeLogin from "./pages/employeeSection/EmployeeLogin";
+import EmployeeDashBoard from "./pages/employeeSection/EmployeeDashBoard";
+import EmployeeProtectedRoute from "./pages/employeeSection/components/EmployeeProtectedRoute";
+import EmployeeAttendance from "./pages/employeeSection/EmployeeAttendance";
 
 
 const App = () => {
@@ -39,6 +45,7 @@ const App = () => {
     auth.currentUser.displayName,
     auth.currentUser.email
   ); */
+  
   useEffect(() => {
     const fetchEmployeeData = async () => {
       let list = [];
@@ -69,9 +76,11 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/home" element={<LandingPage />} />
-        <Route path="/login" element={<Login />} />
+        <Route path="/adminLogin" element={<Login />} />
         <Route path="/signUp" element={<SignUp />} />
+        <Route path="/employeeLogin" element={<EmployeeLogin />} />
         <Route path="/forgot-password" element={<ForgotPassword />} />
+        <Route path="/loginOption" element={<LoginOption />} />
 
         <Route path="/" element={<ProtectedRoute />}>
           <Route index element={<DashBoard />} />
@@ -82,6 +91,12 @@ const App = () => {
 
           <Route path="task" element={<TaskManagement/>}/>
           <Route path="newTask" element={<NewTask data={data} setData={setData}/>}/>
+          <Route path="attendance" element={<Attendance/>}/>
+        </Route>
+
+        <Route path="/employeeDashboard" element={<EmployeeProtectedRoute />}>
+          <Route index element={<EmployeeDashBoard />} />
+          <Route path="employeeAttendance" element={<EmployeeAttendance  />} />         
         </Route>
       </Routes>
     </BrowserRouter>

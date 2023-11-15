@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import world from "../assets/world.png";
+import world from "../../../assets/world.png";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
 import { CiSettings } from "react-icons/ci";
@@ -8,9 +8,10 @@ import { SlCalender } from "react-icons/sl";
 import { LuContact } from "react-icons/lu";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
-import { AuthContext } from "./AuthContext";
+import { AuthContext } from "../../../components/AuthContext";
 
-const SideBar = () => {
+
+const EmployeeSideBar = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const {dispatch} = useContext(AuthContext)
@@ -22,7 +23,7 @@ const SideBar = () => {
 
   return (
     <div className="bg-[#E0EBF4] w-max h-screen ">
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-col justify-around gap-5">
         <div className="flex gap-2 justify-center items-center px-[1rem] py-[0.5rem] rounded-md">
           <img src={world} alt="" className="rounded-full w-[50px] h-[50px]" />
           <div>
@@ -44,17 +45,7 @@ const SideBar = () => {
               
               <LuLayoutDashboard /> DashBoard
             </NavLink>
-            <NavLink
-              to="employee"
-              className={({ isActive }) =>
-                isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              }
-            >
-              
-              <BsPersonVcard /> Employees
-            </NavLink>
+            
             <NavLink
               to="task"
               className={({ isActive }) =>
@@ -64,15 +55,26 @@ const SideBar = () => {
               }
             >
               
-              <BsPersonVcard /> Task Management
+              <BsPersonVcard /> View Task
             </NavLink>
-            <NavLink to='candidate' className={({ isActive }) =>
+            
+            <NavLink to='schedule' className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
                   : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
               }>
               
-              <LuContact /> Candidate
+              <SlCalender />
+              View Schedule
+            </NavLink>
+            <NavLink to='employeeAttendance' className={({ isActive }) =>
+                isActive
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              }>
+              
+              <SlCalender />
+             Set Attendance
             </NavLink>
             <NavLink to='schedule' className={({ isActive }) =>
                 isActive
@@ -81,25 +83,7 @@ const SideBar = () => {
               }>
               
               <SlCalender />
-              Schedule set
-            </NavLink>
-            <NavLink to='attendance' className={({ isActive }) =>
-                isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              }>
-              
-              <SlCalender />
-              Attendance
-            </NavLink>
-            <NavLink to='schedule' className={({ isActive }) =>
-                isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              }>
-              
-              <SlCalender />
-              Leave
+             Request Leave
             </NavLink>
           </ul>
         </div>
@@ -129,4 +113,4 @@ const SideBar = () => {
   );
 };
 
-export default SideBar;
+export default EmployeeSideBar;

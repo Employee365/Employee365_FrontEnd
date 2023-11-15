@@ -18,6 +18,7 @@ import { AuthContext } from "../components/AuthContext";
 
 const NewEmployee = () => {
   const [file, setFile] = useState("");
+  
   const [percentage, setPercentage] = useState(null);
   const auth = getAuth();
   const navigate = useNavigate();
@@ -74,7 +75,7 @@ const NewEmployee = () => {
         }
       );
     };
-
+    
     file && uploadFile();
   }, [file]);
   const handleChange = (e) => {
@@ -92,7 +93,14 @@ const NewEmployee = () => {
         email,
         password
       );
-
+      const {avatar} = formData
+console.log(avatar);
+      updateProfile(auth.currentUser,{
+        displayName:FullName,
+        phoneNumber:number,
+        photoURL:avatar,
+        providerId: new Date().getTime()
+      });
       const user = userCredential.user;
 
       // Spreading the value from the input field

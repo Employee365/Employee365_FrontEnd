@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import { Link,useNavigate } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
-import { AuthContext } from "../components/AuthContext";
+import { AuthContext } from "../../components/AuthContext";
 // import { toast } from "react-toastify";
 
-const Login = () => {
+const EmployeeLogin = () => {
   const navigate = useNavigate()
   const {dispatch} = useContext(AuthContext)
 
@@ -33,7 +33,7 @@ const onSubmit = async (e) => {
     const user = userCredential.user
     if(user){
       dispatch({type:'LOGIN',payload:user})
-      navigate("/")
+      navigate("/employeeDashboard")
     }
 
 
@@ -46,7 +46,7 @@ const onSubmit = async (e) => {
 
   return (
     <section>
-      <h1 className="text-3xl text-center mt-6 font-bold ">Log-in Admin</h1>
+      <h1 className="text-3xl text-center mt-6 font-bold ">Log-in Employee</h1>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto gap-20">
         <div className="w-full md:w-[67%] lg:w-[40%]  p-[2rem] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
           <form onSubmit={onSubmit}>
@@ -98,4 +98,4 @@ const onSubmit = async (e) => {
   );
 };
 
-export default Login;
+export default EmployeeLogin;
