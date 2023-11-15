@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { db } from "../firebase.config";
 import { DataGrid } from "@mui/x-data-grid";
-import { taskColumns, userRows } from "../FakeData";
+import { attendanceColumns, taskColumns, userRows } from "../FakeData";
 import { Link } from "react-router-dom";
 import {
   collection,
@@ -58,45 +58,22 @@ const AttendanceTable = () => {
       console.log(err);
     }
   };
-  const actionColumn = [
-    {
-      field: "action",
-      headerName: "Action",
-      width: 130,
-      renderCell: (params) => {
-        return (
-          <div className="flex items-center gap-3">
-            <Link to={`/employee/${params.id}`}>
-              <div className="py-[2px] px-[5px] text-blue-900 border-[1px] rounded-[5px] border-blue-400">
-                View
-              </div>
-            </Link>
-            <button
-              className="py-[2px] px-[5px] text-red-900 border-[1px] rounded-[5px] border-red-400 cursor-pointer"
-              onClick={() => handleDelete(params.row.id)}
-            >
-              Delete
-            </button>
-          </div>
-        );
-      },
-    },
-  ];
+  
   return (
     <div className="h-[90%] w-full">
       <div className="w-full font-[24px] text-gray-600 mb-[10px] flex items-center justify-between">
-        Add New Task
+        View All Attendance
         <Link
           to="/newTask"
           className="text-green-500 font-semibold text-[16px] border-[1px] border-green-500 p-[5px] rounded-md"
           style={{ textDecoration: "none" }}
         >
-          Add New
+          View All
         </Link>
       </div>
       <DataGrid
         rows={data}
-        columns={taskColumns.concat(actionColumn)}
+        columns={attendanceColumns}
         initialState={{
           pagination: {
             paginationModel: { page: 0, pageSize: 5 },

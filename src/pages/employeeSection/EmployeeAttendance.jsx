@@ -1,8 +1,22 @@
-import React, { useState,useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { db } from "../../firebase.config";
 import { BsImage } from "react-icons/bs";
-import { addDoc, collection, doc, getDocs, orderBy, query, serverTimestamp, setDoc, where } from "firebase/firestore";
-import { createUserWithEmailAndPassword, getAuth, updateProfile } from "firebase/auth";
+import {
+  addDoc,
+  collection,
+  doc,
+  getDocs,
+  orderBy,
+  query,
+  serverTimestamp,
+  setDoc,
+  where,
+} from "firebase/firestore";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  updateProfile,
+} from "firebase/auth";
 import {
   getStorage,
   ref,
@@ -12,54 +26,47 @@ import {
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/AuthContext";
 
-
 const EmployeeAttendance = () => {
-    const [data, setData] = useState([]);
-    console.log('my data',data);
-    
-    
-    const auth = getAuth();
-    
-    const navigate = useNavigate()
-    const {currentUser} = useContext(AuthContext)
-    
-    console.log('currentUser',currentUser.email);
-    const adminId = currentUser.uid
-    const filtered = data.filter((filter)=> filter.email === currentUser.email)
-   
+  const [data, setData] = useState([]);
+  console.log("my data", data);
+
+  const auth = getAuth();
+
+  const navigate = useNavigate();
+  const { currentUser } = useContext(AuthContext);
+
+  console.log("currentUser", currentUser.displayName);
+  const adminId = currentUser.uid;
+  const filtered = data.filter((filter) => filter.email === currentUser.email);
+  console.log(filtered[0].avatar);
 
   const [formData, setFormData] = useState({
-    taskName: "",
-    startDate: "",
-    endDate: "",
-    status: "Active",
-    description: "",
-  
+    employeeName:currentUser.displayName,
+    date:'',
+    signInTime:'',
+    signOutTime:'',
+    place: "Office",
   });
-  const {taskName,assignedTo,startDate,endDate,status,description} =
-    formData;
-    console.log(formData);
-    console.log();
-    const filterData = data.filter((filter)=> filter.FullName === assignedTo)
-    console.log(filterData);
-    
-    
-    useEffect(() => {
-        const fetchEmployeeData = async () => {
-            let list = [];
-              try {
-                const querySnapshot = await getDocs(collection(db, "employee"));
-                querySnapshot.forEach((doc) => {
-                  list.push({ id: doc.id, ...doc.data() });
-                });
-                setData(list);
-                console.log(list);
-              } catch (err) {
-                console.log(err);
-              }
-        };
-        fetchEmployeeData();
-      }, [currentUser]);
+  const {employeeName, place,date,signInTime,signOutTime } = formData;
+  console.log(formData);
+
+
+  useEffect(() => {
+    const fetchEmployeeData = async () => {
+      let list = [];
+      try {
+        const querySnapshot = await getDocs(collection(db, "employee"));
+        querySnapshot.forEach((doc) => {
+          list.push({ id: doc.id, ...doc.data() });
+        });
+        setData(list);
+        console.log(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchEmployeeData();
+  }, [currentUser]);
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -68,124 +75,116 @@ const EmployeeAttendance = () => {
     }));
   };
   const handleAdd = async (e) => {
-      e.preventDefault();
-    try{
-      if(startDate > endDate ){
-        console.log('Start date must be less than end date');
-        return
+    e.preventDefault();
+    try {
+      if (signInTime > signOutTime) {
+        console.log("Start date must be less than end date");
+        return;
       }
-       // Spreading the value from the input field
-       const formDataCopy = {
+      // Spreading the value from the input field
+      const formDataCopy = {
         ...formData,
-        userRef:filtered[0].userRef ,
-        
-        
-
-       
+        userRef: filtered[0].userRef,
+        avatar:filtered[0].avatar
       };
-      
+
       formDataCopy.timestamp = serverTimestamp();
       const docRef = await addDoc(collection(db, "attendance"), formDataCopy);
-      
+
       navigate("/task");
-    }catch(error){
-      console.log(error.message)
+    } catch (error) {
+      console.log(error.message);
     }
-    
   };
   return (
     <div className="p-[2rem]">
       <div className="">
         <div className=" top w-[100%] p-[10px]  flex shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px]">
-          <h1 className="text-gray-200 text-[20px] font-bold">
-            Add New Task
-          </h1>
+          <h1 className="text-gray-200 text-[20px] font-bold">Add New Task</h1>
         </div>
         <div className="bottom  top w-[100%] p-[10px]  flex justify-center items-center shadow-[rgba(50,50,93,0.25)_0px_6px_12px_-2px,_rgba(0,0,0,0.3)_0px_3px_7px_-3px] ">
-          
           <div className="right flex-1">
             <form
               className="flex flex-wrap justify-between gap-[10px]"
               onSubmit={handleAdd}
             >
-              
-              <div className="w-[40%] border-b-2 ">
+
+<div className="w-[40%] border-b-2 ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  Task Name
+                  Employee Name:
                 </label>
                 <input
                   className="w-[100%]  "
                   type="text"
-                  value={taskName}
-                  id="taskName"
-                  required
+                  
+                  value={currentUser.displayName}
+                  id="employeeName"
                   onChange={handleChange}
+                  required
+                  
                   placeholder="Enter Task Name"
                 />
               </div>
-              <div className="w-[40%] ">
-                <label className="flex items-center gap-[10px]" htmlFor="">
-                  Assign To
-                </label>
-                <select value={assignedTo} id="assignedTo" onChange={handleChange} className="w-[100%]">
-                  {data.map((item)=>{
-                      return(
-                        <option key={item.id} >{item.FullName}</option>
-                      )  
-                  }) }
-                </select>
-              </div>
+              
               <div className="w-[40%] border-b-2 ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  Start Date
+                  Selected Date
                 </label>
                 <input
                   className="w-[100%]  "
                   type="date"
-                  value={startDate}
-                  id="startDate"
+                  value={date}
+                  id="date"
                   required
                   onChange={handleChange}
-                 
                 />
               </div>
               <div className="w-[40%] border-b-2 ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  End Date
+                  Sign In Time
                 </label>
                 <input
                   className="w-[100%]  "
-                  type="date"
-                  value={endDate}
-                  id="endDate"
+                  type="time"
+                  value={signInTime}
+                  id="signInTime"
                   required
                   onChange={handleChange}
-                 
+                />
+              </div>
+              <div className="w-[40%] border-b-2 ">
+                <label className="flex items-center gap-[10px]" htmlFor="">
+                  Sign Out Time
+                </label>
+                <input
+                  className="w-[100%]  "
+                  type="time"
+                  value={signOutTime}
+                  id="signOutTime"
+                  required
+                  onChange={handleChange}
                 />
               </div>
 
-              <div className="w-[50%] mr-[25rem]">
+              <div className="w-[40%] ">
                 <label className="flex items-center gap-[10px]" htmlFor="">
-                  Status
+                  Place:
                 </label>
-                <select value={status} onChange={handleChange} id='status' className="w-[50%]" >
-                  <option value='Active'>Active</option>
-                  <option value="Pending">Pending</option>
-                  <option value="Done">Done</option>
+                <select
+                  value={place}
+                  id="place"
+                  onChange={handleChange}
+                  className="w-[100%]"
+                >
+                  <option>Office</option>
+                  <option>Home</option>
+                  <option>Field</option>
                 </select>
               </div>
-              <div className="w-[90%] border-b-2 ">
-                <label className="flex items-center gap-[10px]" htmlFor="">
-                  Description
-                </label>
-                <textarea className="w-full" value={description} onChange={handleChange} id="description" cols="30" rows=""></textarea>
-              </div>
-              
-              
+
               <button
                 className="w-[150px] h-[50px] p-[10px] rounded-xl hover:bg-teal-700 transition-all ease-in-out duration-200  text-white font-bold bg-teal-400"
                 type="submit"
-               
               >
                 Add Task
               </button>
@@ -194,10 +193,7 @@ const EmployeeAttendance = () => {
         </div>
       </div>
     </div>
-
   );
 };
 
-
-
-export default EmployeeAttendance
+export default EmployeeAttendance;

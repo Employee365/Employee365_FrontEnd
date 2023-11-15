@@ -33,8 +33,9 @@ const NewEmployee = () => {
     number: "",
     address: "",
     country: "",
+    department:"",
   });
-  const { username, FullName, email, password, address, country, number } =
+  const { username, FullName, email, password, address, country, number,department } =
     formData;
 
   useEffect(() => {
@@ -141,7 +142,7 @@ console.log(avatar);
           </div>
           <div className="right flex-1">
             <form
-              className="flex flex-wrap justify-around gap-[30px]"
+              className="flex flex-wrap justify-around gap-[20px]"
               onSubmit={handleAdd}
             >
               <div className="w-[40%] cursor-pointer">
@@ -183,6 +184,20 @@ console.log(avatar);
                   required
                   onChange={handleChange}
                   placeholder="John DOe"
+                />
+              </div>
+              <div className="w-[40%] border-b-2 border-gray-500">
+                <label className="flex items-center gap-[10px]" htmlFor="">
+                  Department
+                </label>
+                <input
+                  className="w-[100%] border-none "
+                  type="text"
+                  value={department}
+                  id="department"
+                  required
+                  onChange={handleChange}
+                  placeholder="Department"
                 />
               </div>
               <div className="w-[40%] border-b-2 border-gray-500">

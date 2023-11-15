@@ -9,12 +9,12 @@ const SideBarLayOut = () => {
       <div>
         <Header/>
       </div>
-    <div className='flex'>
-        <div className=''>
+    <div className='grid grid-cols-7'>
+        <div className='col-span-1'>
 
         <SideBar />
         </div>
-        <main className='' >
+        <main className='col-span-6 p-4   border-gray-200' >
             <Outlet/>
         </main>
     </div>

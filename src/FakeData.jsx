@@ -1,18 +1,19 @@
 export const userColumns = [
     { field: 'id', headerName: 'ID', width: 70 },
-    {filed:"user",headerName:'user',width:230, renderCell:(params)=>{
+    {filed:"user",headerName:'User',width:50, renderCell:(params)=>{
         return(
             <div className='flex items-center'>
                 <img src={params.row.avatar} alt="avatar" className="w-[32px] h-[32px] rounded-full object-cover mr-[20px]" />
-                {params.row.username}
+                
             </div>
         )
     }},
-    {field:'email',headerName:'email',width:100},
-    {field:'projectTitle',headerName:'Title',width:100},
-    {field:'role',headerName:'Role',width:100},
-    {field:'status',headerName:'Status',width:100},
-    {field:'deadline',headerName:'Deadline',width:100},
+    {field:'FullName',headerName:'Full-name',width:200},
+    {field:'email',headerName:'Email',width:100},
+    {field:'number',headerName:'Number',width:100},
+    {field:'department',headerName:'Department',width:100},
+    {field:'address',headerName:'Address',width:120},
+    {field:'country',headerName:'Country',width:100},
 ]
 export const taskColumns = [
     { field: 'id', headerName: 'ID', width: 100 },
@@ -32,6 +33,27 @@ export const taskColumns = [
     {field:'role',headerName:'Role',width:100},
     {field:'status',headerName:'Status',width:100},
     {field:'deadline',headerName:'Deadline',width:100},
+]
+
+export const attendanceColumns = [
+    { field: 'id', headerName: 'ID', width: 100 },
+    {filed:"avatar",headerName:'User',width:100, renderCell:(params)=>{
+      return(
+          <div className='flex items-center'>
+              <img src={params.row.avatar} alt="avatar" className="w-[32px] h-[32px] rounded-full object-cover mr-[20px]" />
+              {params.row.username}
+          </div>
+      )
+  }},
+   
+    
+    {field:'employeeName',headerName:'employeeName',width:230},
+    {field:'signInTime',headerName:'signInTime',width:125},
+    {field:'signOutTime',headerName:'signOutTime',width:125},
+
+    {field:'place',headerName:'place',width:125},
+    {field:'date',headerName:'date',width:125},
+    {field:'Working Hours',headerName:'Working Hours',width:125},
 ]
 
 export const userData = [
