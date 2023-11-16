@@ -114,7 +114,7 @@ const SideBar = () => {
               <CgProfile />
               Profile
             </NavLink>
-            <NavLink to='settings' className={({ isActive }) =>
+            <NavLink className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
                   : "flex gap-4 items-center   py-[0.65rem] px-[1rem] mb-2  hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"

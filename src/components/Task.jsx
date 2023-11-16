@@ -42,7 +42,7 @@ const Task = ({ params, employeeId }) => {
     <>
       {data.map((item) => {
         return (
-          <div className="flex justify-between mb-6 w-[500px] shadow-[0_3px_10px_rgb(0,0,0,0.5)] p-[1rem] rounded-2xl">
+          <div className="flex justify-between hover:bg-gradient-to-r from-sky-100 to-cyan-200 transition-all ease-in-out duration-200 mb-6 w-[500px] shadow-[0_3px_10px_rgb(0,0,0,0.5)] p-[1rem] rounded-2xl">
             <div className="flex flex-col justify-center gap-3">
               <p className="font-semibold">{item.description}</p>
               <p className="font-semibold">
