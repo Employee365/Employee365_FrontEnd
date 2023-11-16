@@ -21,7 +21,7 @@ const SideBar = () => {
   /*  */
 
   return (
-    <div className="bg-[#E0EBF4] w-max h-screen ">
+    <div className="bg-[#E0EBF4] w-max h-[120%] ">
       <div className="flex flex-col gap-5">
         <div className="flex gap-2 justify-center items-center px-[1rem] py-[0.65rem] rounded-md">
           <img src={world} alt="" className="rounded-full w-[50px] h-[50px]" />
@@ -34,7 +34,7 @@ const SideBar = () => {
         <div className="">
           <ul className="flex flex-col gap-1">
             <NavLink
-              to="/"
+              to="/dashboard"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center  bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
@@ -45,7 +45,7 @@ const SideBar = () => {
               <LuLayoutDashboard /> DashBoard
             </NavLink>
             <NavLink
-              to="employee"
+              to="/employee"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
@@ -56,7 +56,7 @@ const SideBar = () => {
               <BsPersonVcard /> Employees
             </NavLink>
             <NavLink
-              to="task"
+              to="/task"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
@@ -83,7 +83,7 @@ const SideBar = () => {
               <SlCalender />
               Schedule set
             </NavLink>
-            <NavLink to='attendance' className={({ isActive }) =>
+            <NavLink to='/attendance' className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
                   : "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"

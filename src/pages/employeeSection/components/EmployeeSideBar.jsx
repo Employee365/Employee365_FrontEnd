@@ -35,7 +35,7 @@ const EmployeeSideBar = () => {
         <div className="">
           <ul className="flex flex-col gap-1">
             <NavLink
-              to="/"
+              to="employeeDashboard"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center  bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
@@ -47,7 +47,7 @@ const EmployeeSideBar = () => {
             </NavLink>
             
             <NavLink
-              to="task"
+              to="employeetask"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"

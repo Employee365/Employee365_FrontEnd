@@ -33,7 +33,7 @@ const onSubmit = async (e) => {
     const user = userCredential.user
     if(user){
       dispatch({type:'LOGIN',payload:user})
-      navigate("/")
+      navigate("/dashboard")
     }
 
 

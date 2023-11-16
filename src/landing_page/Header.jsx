@@ -25,7 +25,7 @@ const Header = () => {
         </div>
 
         <div>
-          <Link to='/login' className="ss:text-[15px] sm:text-[25px] font-bold ss:rounded-[10px]  sm:rounded-[15px] bg-white shadow-4xl ss:py-[7px] ss:px-[20px]   sm:py-[10px] sm:px-[50px] inline-block hover:bg-gray-50 transition-all ease-in-out duration-150">
+          <Link to='/loginOption' className="ss:text-[15px] sm:text-[25px] font-bold ss:rounded-[10px]  sm:rounded-[15px] bg-white shadow-4xl ss:py-[7px] ss:px-[20px]   sm:py-[10px] sm:px-[50px] inline-block hover:bg-gray-50 transition-all ease-in-out duration-150">
             Login
           </Link>
         </div>

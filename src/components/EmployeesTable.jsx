@@ -44,7 +44,7 @@ const EmployeesTable = ({data,setData}) => {
       <div className="w-full font-[24px] text-gray-600 mb-[10px] flex items-center justify-between">
         Add New Employee
         <Link
-          to="/newEmployee"
+          to="newEmployee"
           className="text-green-500 font-semibold text-[16px] border-[1px] border-green-500 p-[5px] rounded-md"
           style={{ textDecoration: "none" }}
         >

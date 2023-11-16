@@ -41,7 +41,7 @@ if(isLoading){
   return (
     <div className=" w-full rounded-lg  gap-[6rem] flex p-[1rem] justify-between  items-center bg-[#E9E5E5]">
       <div className="">
-        <img src={filtered[0].avatar} className="w-[200px]" alt="" />
+        <img src={filtered[0].avatar} className="w-[200px] h-[200px] rounded-xl object-cover" alt="" />
       </div>
       <div className="flex flex-col gap-6 ">
         <div>

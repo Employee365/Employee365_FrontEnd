@@ -38,7 +38,7 @@ const EmployeeAttendance = () => {
   console.log("currentUser", currentUser.displayName);
   const adminId = currentUser.uid;
   const filtered = data.filter((filter) => filter.email === currentUser.email);
-  console.log(filtered[0].avatar);
+  // console.log(filtered[0].avatar);
 
   const [formData, setFormData] = useState({
     employeeName:currentUser.displayName,
