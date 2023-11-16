@@ -6,3 +6,19 @@ html{
     scroll-behavior: smooth;
 }
 
+.status{
+    padding:5px;
+    border-radius:5px ;
+}
+.status.Active{
+   background-color: rgba(0,120,0,0.05); 
+   color: green;
+}
+.status.Pending{
+   background-color: rgba(0,120,0,0.05); 
+   color: goldenrod;
+}
+.status.Done{
+   background-color: rgba(0,120,0,0.05); 
+   color: crimson;
+}

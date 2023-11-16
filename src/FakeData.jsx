@@ -2,7 +2,7 @@ export const userColumns = [
     { field: 'id', headerName: 'ID', width: 70 },
     {filed:"user",headerName:'User',width:50, renderCell:(params)=>{
         return(
-            <div className='flex items-center'>
+            <div key={params.row.id} className='flex items-center'>
                 <img src={params.row.avatar} alt="avatar" className="w-[32px] h-[32px] rounded-full object-cover mr-[20px]" />
                 
             </div>
@@ -31,7 +31,11 @@ export const taskColumns = [
     {field:'endDate',headerName:'endDate',width:100},
 
     {field:'role',headerName:'Role',width:100},
-    {field:'status',headerName:'Status',width:100},
+    {field:'status',headerName:'Status',width:100,renderCell:(params)=>{
+      return (
+        <div className={`status ${params.row.status}`}>{params.row.status}</div>
+      )
+    }},
     {field:'deadline',headerName:'Deadline',width:100},
 ]
 

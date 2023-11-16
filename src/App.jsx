@@ -86,7 +86,7 @@ const App = () => {
           <Route index element={<DashBoard />} />
 
           <Route path="employee" element={<EmployeeList data={data} setData={setData} isLoading={isLoading} />} />
-          <Route path="employee/:employeeId" element={<Employee />} />
+          <Route path="employee/:employeeId" element={<Employee data={data} />} />
           <Route path="newEmployee" element={<NewEmployee  />} />
 
           <Route path="task" element={<TaskManagement/>}/>

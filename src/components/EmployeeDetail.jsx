@@ -1,24 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import profileImage from "../assets/world.png";
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../firebase.config";
+import Loader from "./Loader";
 
-const EmployeeDetail = () => {
+const EmployeeDetail = ({params,employeeId}) => {
+  const [data,setData] =  useState(null)
+  const [isLoading,setIsLoading] = useState(true)
+
+
+
+
+  useEffect(() => {
+    const fetchEmployeeData = async () => {
+      let list = [];
+      try {
+        
+        const employeeRef = collection(db, "employee");
+      
+        const querrySnap = await getDocs(employeeRef);
+
+        querrySnap.forEach((doc) => {
+          return list.push({ id: doc.id, ...doc.data() });
+        });
+    
+        setData(list);
+        setIsLoading(false)
+        
+      } catch (err) {
+        console.log(err.message);
+      }
+    };
+    fetchEmployeeData();
+  }, []);
+if(isLoading){
+  return <Loader/>
+}
+  const filtered = data.filter((filter)=> filter.id === employeeId)
+  console.log(filtered);
   return (
-    <div className=" w-full rounded-lg mt-[1rem] gap-[6rem] flex p-[1.5rem] justify-between  items-center bg-[#E9E5E5]">
+    <div className=" w-full rounded-lg  gap-[6rem] flex p-[1rem] justify-between  items-center bg-[#E9E5E5]">
       <div className="">
-        <img src={profileImage} className="w-[200px]" alt="" />
+        <img src={filtered[0].avatar} className="w-[200px]" alt="" />
       </div>
       <div className="flex flex-col gap-6 ">
         <div>
           <h1 className="text-[1rem] font-normal">FULL NAME</h1>
-          <p className="font-semibold">John Doe</p>
+          <p className="font-semibold">{filtered[0].FullName}</p>
         </div>
         <div>
           <h1 className="text-[1rem] font-normal">EMAIL</h1>
-          <p className="font-semibold">johndoe"gmail.com</p>
+          <p className="font-semibold">{filtered[0].email}</p>
         </div>
         <div>
           <h1 className="text-[1rem] font-normal">PHONE NUMBER</h1>
-          <p className="font-semibold">+234(0)907324009</p>
+          <p className="font-semibold">{filtered[0].number}</p>
         </div>
       </div>
       <div className="flex flex-col gap-6">
@@ -28,17 +64,17 @@ const EmployeeDetail = () => {
         </div>
         <div>
           <h1 className="text-[1rem] font-normal">DEPARTMENT</h1>
-          <p className="font-semibold">Marketing</p>
+          <p className="font-semibold">""</p>
         </div>
         <div>
           <h1 className="text-[1rem] font-normal">ADDRESS</h1>
-          <p className="font-semibold">10,Oyebajo street, Mushin,Lagos State</p>
+          <p className="font-semibold">{filtered[0].address}</p>
         </div>
       </div>
       <div className="flex flex-col gap-6 ">
         <div>
           <h1 className="text-[1rem] font-normal">NATIONALITY</h1>
-          <p className="font-semibold">Nigeria</p>
+          <p className="font-semibold">{filtered[0].country}</p>
         </div>
         <div>
           <h1 className="text-[1rem] font-normal">COMPANY</h1>

@@ -6,18 +6,10 @@ import Loader from '../components/Loader'
 const EmployeeList = ({data,setData,isLoading}) => {
   return (
     <div className=''>
-      {
-        isLoading ? (
-          <>
-          <Loader/>
-          </>
-        ): (
-<>
+     
 
 <EmployeesTable data={data} setData={setData}/>
-</>
-        )
-      }
+
     </div>
   )
 }
