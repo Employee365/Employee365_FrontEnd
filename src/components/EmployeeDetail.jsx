@@ -37,7 +37,7 @@ if(isLoading){
   return <Loader/>
 }
   const filtered = data.filter((filter)=> filter.id === employeeId)
-  console.log(filtered);
+ 
   return (
     <div className=" w-full rounded-lg  gap-[6rem] flex p-[1rem] justify-between  items-center bg-[#E9E5E5]">
       <div className="">
@@ -64,7 +64,7 @@ if(isLoading){
         </div>
         <div>
           <h1 className="text-[1rem] font-normal">DEPARTMENT</h1>
-          <p className="font-semibold">""</p>
+          <p className="font-semibold">{filtered[0].department}</p>
         </div>
         <div>
           <h1 className="text-[1rem] font-normal">ADDRESS</h1>

@@ -34,7 +34,7 @@ const PieChart = () => {
         }
     },[])
   return (
-    <div>
+    <div className='flex justify-center mb-6 w-[500px] h-[300px] shadow-[0_3px_10px_rgb(0,0,0,0.5)] p-[1rem] rounded-2xl'>
 <canvas ref={chartRef}/>
     </div>
   )
