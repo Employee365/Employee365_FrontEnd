@@ -1,20 +1,21 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
-// import Header from './Header'
+
 import EmployeeSideBar from './EmployeeSideBar'
+import Header from '../../../components/Header'
 
 const EmployeeSideBarLayOut = () => {
   return (
     <div>
-      {/* <div>
+      <div>
         <Header/>
-      </div> */}
+      </div>
     <div className='flex'>
         <div className=''>
 
         <EmployeeSideBar />
         </div>
-        <main className='' >
+        <main className='p-[2rem]' >
             <Outlet/>
         </main>
     </div>
