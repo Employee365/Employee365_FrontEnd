@@ -33,6 +33,7 @@ import EmployeeLogin from "./pages/employeeSection/EmployeeLogin";
 import EmployeeDashBoard from "./pages/employeeSection/EmployeeDashBoard";
 import EmployeeProtectedRoute from "./pages/employeeSection/components/EmployeeProtectedRoute";
 import EmployeeAttendance from "./pages/employeeSection/EmployeeAttendance";
+import EmployeeTask from "./pages/employeeSection/EmployeeTask";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -95,10 +96,7 @@ const App = () => {
               />
             }
           />
-          <Route
-            path=":employeeId"
-            element={<Employee data={data} />}
-          />
+          <Route path=":employeeId" element={<Employee data={data} />} />
           <Route path="newEmployee" element={<NewEmployee />} />
         </Route>
         {/* <Route path="/task" element={<ProtectedRoute/>}>
@@ -120,10 +118,13 @@ const App = () => {
           <Route path="/employeeDashboard" element={<EmployeeDashBoard />} />
         </Route>
 
-        <Route path="employeeAttendance" element={<ProtectedRoute/>}>
-
+        <Route path="employeeAttendance" element={<EmployeeProtectedRoute />}>
           <Route path="/employeeAttendance" element={<EmployeeAttendance />} />
-      </Route>
+        </Route>
+        <Route path="employeeTask" element={<EmployeeProtectedRoute />}>
+          <Route path="/employeeTask" element={<EmployeeTask />} />
+          
+        </Route>
       </Routes>
     </BrowserRouter>
   );

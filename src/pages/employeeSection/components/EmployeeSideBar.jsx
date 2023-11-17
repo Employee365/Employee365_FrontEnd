@@ -35,7 +35,7 @@ const EmployeeSideBar = () => {
         <div className="">
           <ul className="flex flex-col gap-1">
             <NavLink
-              to="employeeDashboard"
+              to="/employeeDashboard"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center  bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
@@ -47,7 +47,7 @@ const EmployeeSideBar = () => {
             </NavLink>
             
             <NavLink
-              to="employeetask"
+              to="/employeeTask"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
@@ -67,7 +67,7 @@ const EmployeeSideBar = () => {
               <SlCalender />
               View Schedule
             </NavLink>
-            <NavLink to='employeeAttendance' className={({ isActive }) =>
+            <NavLink to='/employeeAttendance' className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
                   : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
