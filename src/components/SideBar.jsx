@@ -114,7 +114,7 @@ const SideBar = () => {
         <div>
           <ul>
             <NavLink
-              to="profile"
+              to="/profile"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"

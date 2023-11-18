@@ -35,6 +35,7 @@ import EmployeeProtectedRoute from "./pages/employeeSection/components/EmployeeP
 import EmployeeAttendance from "./pages/employeeSection/EmployeeAttendance";
 import EmployeeTask from "./pages/employeeSection/EmployeeTask";
 import { Toaster } from "react-hot-toast";
+import Profile from "./pages/Profile";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -110,6 +111,9 @@ const App = () => {
 
         <Route path="attendance" element={<ProtectedRoute />}>
           <Route path="/attendance" element={<Attendance />} />
+        </Route>
+        <Route path="profile" element={<ProtectedRoute />}>
+          <Route path="/profile" element={<Profile />} />
         </Route>
 
         <Route path="employeeDashboard" element={<EmployeeProtectedRoute />}>
