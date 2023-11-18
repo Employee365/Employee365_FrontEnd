@@ -34,17 +34,13 @@ import EmployeeDashBoard from "./pages/employeeSection/EmployeeDashBoard";
 import EmployeeProtectedRoute from "./pages/employeeSection/components/EmployeeProtectedRoute";
 import EmployeeAttendance from "./pages/employeeSection/EmployeeAttendance";
 import EmployeeTask from "./pages/employeeSection/EmployeeTask";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   const [data, setData] = useState([]);
-  const auth = getAuth();
   const { currentUser } = useContext(AuthContext);
   const [isLoading, setIsLoading] = useState(false);
-  /*  console.log(
-    auth.currentUser.uid,
-    auth.currentUser.displayName,
-    auth.currentUser.email
-  ); */
+
 
   useEffect(() => {
     const fetchEmployeeData = async () => {
@@ -73,6 +69,8 @@ const App = () => {
   }, []);
 
   return (
+    <div>
+
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -96,7 +94,7 @@ const App = () => {
               />
             }
           />
-          <Route path=":employeeId" element={<Employee data={data} />} />
+          <Route path=":employeeId" element={<Employee data={data} isLoading={isLoading}/>} />
           <Route path="newEmployee" element={<NewEmployee />} />
         </Route>
         {/* <Route path="/task" element={<ProtectedRoute/>}>
@@ -127,6 +125,8 @@ const App = () => {
         </Route>
       </Routes>
     </BrowserRouter>
+    <div><Toaster/></div>
+    </div>
   );
 };
 

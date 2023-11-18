@@ -66,11 +66,7 @@ const TaskTable = () => {
       renderCell: (params) => {
         return (
           <div className="flex items-center gap-3">
-            <Link to={`/employee/${params.id}`}>
-              <div className="py-[2px] px-[5px] text-blue-900 border-[1px] rounded-[5px] border-blue-400">
-                View
-              </div>
-            </Link>
+            
             <button
               className="py-[2px] px-[5px] text-red-900 border-[1px] rounded-[5px] border-red-400 cursor-pointer"
               onClick={() => handleDelete(params.row.id)}

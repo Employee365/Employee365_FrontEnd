@@ -1,19 +1,20 @@
 import React, { useContext, useState } from "react";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import { signInWithEmailAndPassword, getAuth } from "firebase/auth";
 import { AuthContext } from "../components/AuthContext";
-// import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+
 
 const Login = () => {
-  const navigate = useNavigate()
-  const {dispatch} = useContext(AuthContext)
+  const navigate = useNavigate();
+  const { dispatch } = useContext(AuthContext);
 
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
- 
+
   const [revealPassword, setRevealPassword] = useState(false);
 
   const { email, password } = formData;
@@ -25,24 +26,27 @@ const Login = () => {
     }));
   };
 
-const onSubmit = async (e) => {
-  e.preventDefault()
-  try{
-    const auth = getAuth()
-    const userCredential = await signInWithEmailAndPassword(auth,email,password)
-    const user = userCredential.user
-    if(user){
-      dispatch({type:'LOGIN',payload:user})
-      navigate("/dashboard")
+  const onSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const auth = getAuth();
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = userCredential.user;
+      if (user) {
+        dispatch({ type: "LOGIN", payload: user });
+        toast.success('Login Successfull')
+        navigate("/dashboard");
+
+      }
+    } catch (error) {
+      toast.error(error.message)
+      
     }
-
-
-  }catch(error){
-    // toast.error("Incorrect email or password")
-    console.log(error.message);
-  }
-   
-}
+  };
 
   return (
     <section>
@@ -80,18 +84,23 @@ const onSubmit = async (e) => {
               )}
             </div>
             <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg">
-              <p className="mb-6">Don't have an account? <span className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out"><Link to='/sign-up'>Register</Link></span>
+              <p className="mb-6">
+                Don't have an account?{" "}
+                <span className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out">
+                  <Link to="/sign-up">Register</Link>
+                </span>
               </p>
               <p className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out">
-                <Link to='/forgot-password'>Forgot Password</Link>
+                <Link to="/forgot-password">Forgot Password</Link>
               </p>
             </div>
-            <button className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 hover:shadow-lg active:bg-blue-800 ease-in-out" type="submit">Sign In
-          </button>
-      
+            <button
+              className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 hover:shadow-lg active:bg-blue-800 ease-in-out"
+              type="submit"
+            >
+              Sign In
+            </button>
           </form>
-          
-          
         </div>
       </div>
     </section>

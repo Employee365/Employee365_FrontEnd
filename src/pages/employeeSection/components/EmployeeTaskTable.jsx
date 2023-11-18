@@ -31,6 +31,7 @@ const EmployeeTaskTable = () => {
 
   const [formData, setFormData] = useState({});
   const { status,taskName,description } = formData;
+  const {currentUser} = useContext(AuthContext)
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -46,7 +47,7 @@ const EmployeeTaskTable = () => {
         const employeeRef = collection(db, "tasks");
         const q = query(
           employeeRef,
-          where("assignedTo", "==", auth.currentUser.displayName),
+          where("assignedTo", "==", currentUser.displayName),
           orderBy("timestamp", "desc")
         );
         const querrySnap = await getDocs(q);

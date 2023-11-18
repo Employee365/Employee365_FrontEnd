@@ -6,7 +6,7 @@ import Task from "../components/Task";
 import { db } from "../firebase.config";
 import { doc, getDoc } from "firebase/firestore";
 
-const Employee = ({ data }) => {
+const Employee = ({ data,isLoading }) => {
   const params = useParams();
   const employeeId = parseInt(params.employeeId);
 
@@ -14,7 +14,7 @@ const Employee = ({ data }) => {
     <>
     <div>
       <div>
-        <EmployeeDetail params={params} employeeId={employeeId} />
+        <EmployeeDetail params={params} employeeId={employeeId} data={data} isLoading={isLoading} />
       </div>
     </div>
     <div className="mt-4 flex justify-between w-full">

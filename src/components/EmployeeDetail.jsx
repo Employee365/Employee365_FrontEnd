@@ -4,8 +4,9 @@ import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebase.config";
 import Loader from "./Loader";
 
-const EmployeeDetail = ({params,employeeId}) => {
+const EmployeeDetail = ({employeeId}) => {
   const [data,setData] =  useState(null)
+  console.log('data',data);
   const [isLoading,setIsLoading] = useState(true)
 
 
@@ -33,10 +34,11 @@ const EmployeeDetail = ({params,employeeId}) => {
     };
     fetchEmployeeData();
   }, []);
-if(isLoading){
-  return <Loader/>
-}
+  if(isLoading){
+    return <Loader/>
+  }
   const filtered = data.filter((filter)=> filter.id === employeeId)
+
  
   return (
     <div className=" w-full rounded-lg  gap-[6rem] flex p-[1rem] justify-between  items-center bg-[#E9E5E5]">
