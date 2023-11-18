@@ -6,15 +6,15 @@ import Header from './Header'
 const SideBarLayOut = () => {
   return (
     <div>
-      <div>
+      <div className='fixed top-0 left-0 right-0 z-10 bg-white'>
         <Header/>
       </div>
     <div className='flex'>
-        <div className=''>
+        <div className='fixed top-[5rem]'>
 
         <SideBar />
         </div>
-        <main className=' p-[1.5rem]  border-gray-200' >
+        <main className='mt-[5rem] ml-[13rem] p-[2rem]  border-gray-200' >
             <Outlet/>
         </main>
     </div>

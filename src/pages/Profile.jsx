@@ -10,6 +10,7 @@ import {
  
 } from "firebase/auth";
 import {doc, getDoc, } from "firebase/firestore";
+import { Link } from 'react-router-dom';
 
 
 const Profile = () => {
@@ -38,8 +39,8 @@ if(isLoading){
 
 
   return (
-    <div className='pb-[20rem] rounded-lg pt-[7rem] px-[7rem] bg-gradient-to-r from-neutral-100 to-gray-100'>
-
+    <div className='pb-[20rem] rounded-lg pt-[2rem] px-[7rem] bg-gradient-to-r from-neutral-100 to-gray-100'>
+        <p className='mb-[1.5rem] shadow-[0_3px_10px_rgb(0,0,0,0.2)] rounded-lg font-bold text-center border-2 p-2'>COMPANY PROFILE</p>
     <div className=" w-full rounded-lg shadow-[0_3px_10px_rgb(0,0,0,0.2)]   gap-[8rem] flex p-[1rem] justify-between  items-center ">
       <div className="">
         <img src={companyData.avatar} className="w-[200px] h-[200px] rounded-2xl object-cover" alt="" />
@@ -70,6 +71,10 @@ if(isLoading){
         </div>
       </div>
       
+    </div>
+    <div className='mt-[1rem] rounded-xl bg-blue-700 hover:bg-blue-800 text-white font-semibold cursor-default w-[115px] py-[0.3rem] px-[1rem]'>
+
+      <Link to='edit-profile'><button>Edit Profile</button></Link>
     </div>
     </div>
 

@@ -36,6 +36,7 @@ import EmployeeAttendance from "./pages/employeeSection/EmployeeAttendance";
 import EmployeeTask from "./pages/employeeSection/EmployeeTask";
 import { Toaster } from "react-hot-toast";
 import Profile from "./pages/Profile";
+import EditProfile from "./pages/EditProfile";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -114,6 +115,8 @@ const App = () => {
         </Route>
         <Route path="profile" element={<ProtectedRoute />}>
           <Route path="/profile" element={<Profile />} />
+          <Route path="edit-profile" element={<EditProfile />} />
+          
         </Route>
 
         <Route path="employeeDashboard" element={<EmployeeProtectedRoute />}>

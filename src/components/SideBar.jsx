@@ -23,7 +23,7 @@ const SideBar = () => {
   
 
   return (
-    <div className="bg-[#E0EBF4] w-max h-[120%] ">
+    <div className="bg-[#E0EBF4] w-max ">
       <div className="flex flex-col gap-5">
         <div className="flex gap-2 justify-center items-center px-[1rem] py-[0.65rem] rounded-md">
           <img src={currentUser.photoURL} alt="" className="rounded-full w-[50px] h-[50px]" />
