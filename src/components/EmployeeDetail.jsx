@@ -6,7 +6,7 @@ import Loader from "./Loader";
 
 const EmployeeDetail = ({employeeId}) => {
   const [data,setData] =  useState(null)
-  console.log('data',data);
+ 
   const [isLoading,setIsLoading] = useState(true)
 
 

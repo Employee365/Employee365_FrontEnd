@@ -25,20 +25,20 @@ import {
 } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../components/AuthContext";
+import toast from "react-hot-toast";
 
 const EmployeeAttendance = () => {
   const [data, setData] = useState([]);
-  console.log("my data", data);
+
 
   const auth = getAuth();
 
   const navigate = useNavigate();
   const { currentUser } = useContext(AuthContext);
 
-  console.log("currentUser", currentUser.displayName);
   const adminId = currentUser.uid;
   const filtered = data.filter((filter) => filter.email === currentUser.email);
-  // console.log(filtered[0].avatar);
+  
 
   const [formData, setFormData] = useState({
     employeeName:currentUser.displayName,
@@ -48,7 +48,7 @@ const EmployeeAttendance = () => {
     place: "Office",
   });
   const {employeeName, place,date,signInTime,signOutTime } = formData;
-  console.log(formData);
+
 
 
   useEffect(() => {
@@ -60,7 +60,7 @@ const EmployeeAttendance = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
-        console.log(list);
+       
       } catch (err) {
         console.log(err);
       }
@@ -78,7 +78,7 @@ const EmployeeAttendance = () => {
     e.preventDefault();
     try {
       if (signInTime > signOutTime) {
-        console.log("Start date must be less than end date");
+        toast.error("Start date must be less than end date");
         return;
       }
       // Spreading the value from the input field

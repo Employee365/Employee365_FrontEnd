@@ -95,7 +95,7 @@ const NewEmployee = () => {
         password
       );
       const {avatar} = formData
-console.log(avatar);
+
       updateProfile(auth.currentUser,{
         displayName:FullName,
         phoneNumber:number,

@@ -3,7 +3,7 @@ import Logo from "./Logo";
 
 const Header = () => {
   const [search, setSearch] = useState();
-  console.log(search);
+ 
   return (
     <div className="p-[1rem] flex gap-[2rem] border-b-2 border-gray-200">
       <div className="flex gap-[4rem]">

@@ -58,11 +58,11 @@ const App = () => {
         querrySnap.forEach((doc) => {
           return list.push({ id: doc.id, ...doc.data() });
         });
-        console.log(list);
+        
         setData(list);
         setIsLoading(false);
       } catch (err) {
-        console.log(err);
+       
       }
     };
     fetchEmployeeData();

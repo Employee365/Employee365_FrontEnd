@@ -9,7 +9,7 @@ import { AuthContext } from './AuthContext'
 
 const ProtectedRoute = () => {
   const {currentUser} = useContext(AuthContext)
-  console.log(currentUser);
+
     
   return currentUser ? <SideBarLayOut/>:<Navigate to='/loginOption'/>
 }

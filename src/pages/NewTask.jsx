@@ -11,12 +11,12 @@ import {
 } from "firebase/storage";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/AuthContext";
+import toast from "react-hot-toast";
 
 const NewTask = ({data,setData}) => {
   
 
   const auth = getAuth();
-  // console.log('auth',auth.currentUser.uid);
   const navigate = useNavigate()
   const {currentUser} = useContext(AuthContext)
   const adminId = currentUser.uid
@@ -32,10 +32,7 @@ const NewTask = ({data,setData}) => {
   });
   const {taskName,assignedTo,startDate,endDate,status,description} =
     formData;
-    console.log(formData);
-    console.log();
     const filterData = data.filter((filter)=> filter.FullName === assignedTo)
-    console.log(filterData);
     
     
   const handleChange = (e) => {
@@ -48,7 +45,7 @@ const NewTask = ({data,setData}) => {
     e.preventDefault();
     try{
       if(startDate > endDate ){
-        console.log('Start date must be less than end date');
+        toast.error('Start date must be less than end date');
         return
       }
        // Spreading the value from the input field

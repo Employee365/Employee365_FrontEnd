@@ -12,7 +12,6 @@ import TaskTable from '../components/TaskTable';
 const DashBoard = () => {
   const auth = getAuth()
   const {currentUser} = useContext(AuthContext)
-  console.log('photo',currentUser.photoURL);
   return (
     <>
     <div className='flex justify-around'>

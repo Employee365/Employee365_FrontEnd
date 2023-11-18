@@ -24,9 +24,7 @@ const EmployeeTaskTable = () => {
   const [individualData, setIndividualData] = useState(null);
   const [isInView, setIsInView] = useState(false);
   const [id, setId] = useState("");
-  console.log("confirm", id);
-  console.log(data);
-  console.log("data", individualData);
+
   const auth = getAuth();
 
   const [formData, setFormData] = useState({});
@@ -55,7 +53,7 @@ const EmployeeTaskTable = () => {
         querrySnap.forEach((doc) => {
           return list.push({ id: doc.id, ...doc.data() });
         });
-        console.log(list);
+       
         setData(list);
       } catch (err) {
         console.log(err);
@@ -81,7 +79,6 @@ const EmployeeTaskTable = () => {
     try {
       await deleteDoc(doc(db, "tasks", id));
       setData(data.filter((item) => item.id !== id));
-      console.log(id);
     } catch (err) {
       console.log(err);
     }

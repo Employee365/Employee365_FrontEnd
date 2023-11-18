@@ -10,7 +10,7 @@ const EmployeesTable = ({data,setData}) => {
     try {
       await deleteDoc(doc(db, "employee", id));
       setData(data.filter((item) => item.id !== id));
-      console.log(id);
+     
     } catch (err) {
       console.log(err);
     }

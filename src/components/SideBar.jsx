@@ -19,7 +19,7 @@ const SideBar = () => {
     navigate("/loginOption");
   };
 
-  console.log(currentUser)
+
   
 
   return (

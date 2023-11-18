@@ -33,7 +33,7 @@ const Task = ({ params, employeeId }) => {
     fetchTask();
   }, []);
 
-  console.log("data", data);
+ 
   if (isLoading) {
     return <Loader />;
   }

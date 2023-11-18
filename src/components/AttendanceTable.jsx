@@ -17,14 +17,10 @@ import { AuthContext } from "./AuthContext";
 
 const AttendanceTable = () => {
   const [data, setData] = useState([]);
-  console.log(data);
+ 
   const auth = getAuth();
   const {currentUser} = useContext(AuthContext)
-  /* console.log(
-    auth.currentUser.uid,
-    auth.currentUser.displayName,
-    auth.currentUser.email
-  ); */
+ 
   useEffect(() => {
     const fetchEmployeeData = async () => {
       let list = [];
@@ -40,10 +36,10 @@ const AttendanceTable = () => {
         querrySnap.forEach((doc) => {
           return list.push({ id: doc.id, ...doc.data() });
         });
-        console.log(list);
+      
         setData(list);
       } catch (err) {
-        console.log(err);
+      
       }
     };
     fetchEmployeeData();
@@ -53,9 +49,9 @@ const AttendanceTable = () => {
     try {
       await deleteDoc(doc(db, "tasks", id));
       setData(data.filter((item) => item.id !== id));
-      console.log(id);
+      
     } catch (err) {
-      console.log(err);
+      
     }
   };
   
