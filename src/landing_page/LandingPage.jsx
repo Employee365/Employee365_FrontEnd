@@ -3,6 +3,7 @@ import Header from './Header'
 import HeroSection from './HeroSection'
 import Partner from './Partner'
 import Demo from './Demo'
+import Possibilities from './Possibilities'
 
 const LandingPage = () => {
   return (
@@ -11,6 +12,7 @@ const LandingPage = () => {
     <HeroSection/>
     <Partner/>
     <Demo/>
+    <Possibilities/>
     </>
   )
 }
