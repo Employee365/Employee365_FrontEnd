@@ -14,7 +14,7 @@ const SideBarLayOut = () => {
 
         <SideBar />
         </div>
-        <main className='mt-[5rem] ml-[13rem] p-[2rem]   border-gray-200' >
+        <main className='mt-[5rem] ml-[13rem] p-[1.5rem]   border-gray-200' >
             <Outlet/>
         </main>
     </div>
