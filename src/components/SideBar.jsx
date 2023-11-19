@@ -2,10 +2,11 @@ import React, { useContext } from "react";
 import world from "../assets/world.png";
 import { LuLayoutDashboard } from "react-icons/lu";
 import { CgProfile } from "react-icons/cg";
-import { CiSettings } from "react-icons/ci";
+
 import { BsPersonVcard } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
 import { LuContact } from "react-icons/lu";
+import { RiLogoutBoxLine } from "react-icons/ri";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
@@ -26,7 +27,7 @@ const SideBar = () => {
     <div className="bg-[#E0EBF4] w-max ">
       <div className="flex flex-col gap-5">
         <div className="flex gap-2 justify-center items-center px-[1rem] py-[0.65rem] rounded-md">
-          <img src={currentUser.photoURL} alt="" className="rounded-full w-[50px] h-[50px]" />
+          <img src={currentUser.photoURL} alt="" className="rounded-full border-2 border-gray-300 w-[50px] h-[50px]" />
           <div>
             <h3 className="font-bold text-sm">{currentUser.displayName}</h3>
             <h3 className="text-[12px]"> Marketing Specialist</h3>
@@ -124,7 +125,7 @@ const SideBar = () => {
               <CgProfile />
               Profile
             </NavLink>
-            <NavLink
+            <NavLink to='/loginOption'
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
@@ -132,8 +133,8 @@ const SideBar = () => {
               }
               onClick={onlogOut}
             >
-              <CiSettings />
-              Setting
+              <RiLogoutBoxLine />
+              Log Out
             </NavLink>
           </ul>
         </div>

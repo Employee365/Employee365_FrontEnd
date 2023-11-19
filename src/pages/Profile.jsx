@@ -13,26 +13,9 @@ import {doc, getDoc, } from "firebase/firestore";
 import { Link } from 'react-router-dom';
 
 
-const Profile = () => {
-  const [companyData, setCompanyData] = useState(null)
-  const [isLoading,setIsLoading] = useState(true)
-  const auth = getAuth()
-  // const userId = auth.currentUser.uid;
-  const {currentUser} = useContext(AuthContext)
-
-  useEffect(() => {
-    async function fetchAdminData() {
-      const docRef = doc(db, "admin", currentUser.uid);
-      const docSnap = await getDoc(docRef);
-      if (docSnap.exists()) {
-        setCompanyData(docSnap.data());
-        setIsLoading(false)
-        
-      } else {
-      }
-    }
-    fetchAdminData();
-  }, []);
+const Profile = ({companyData,isLoading}) => {
+  
+  
 if(isLoading){
   return <Loader/>
 }

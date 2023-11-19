@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AiFillEyeInvisible, AiFillEye } from "react-icons/ai";
 import {
@@ -7,7 +7,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { db } from "../firebase.config";
-import { serverTimestamp, setDoc, doc } from "firebase/firestore";
+import { serverTimestamp, setDoc, doc, updateDoc } from "firebase/firestore";
 import { BsImage } from "react-icons/bs";
 import {
   getDownloadURL,
@@ -15,19 +15,24 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
-// import { toast } from "react-toastify";
+import toast from "react-hot-toast";
+import { AuthContext } from "../components/AuthContext";
 
-const EditProfile = () => {
+
+const EditProfile = ({companyData,isLoading}) => {
+  const auth = getAuth()
+  console.log(auth.currentUser);
+  const {currentUser} = useContext(AuthContext)
   const navigate = useNavigate();
-  const [file, setFile] = useState("");
+  const [file, setFile] = useState();
   const [percentage, setPercentage] = useState(null);
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    address: "",
-    number: "",
-    speciality: "",
+    name: companyData.name,
+    email: companyData.email,
+    
+    address: companyData.address,
+    number: companyData.number,
+    speciality: companyData.speciality,
   });
 
   const [revealPassword, setRevealPassword] = useState(false);
@@ -86,15 +91,9 @@ const EditProfile = () => {
     e.preventDefault();
 
     try {
-      // FireBase Logic goes here
-      const auth = getAuth();
-      const userCredential = await createUserWithEmailAndPassword(
-        auth,
-        email,
-        password
-      );
+     
       const { avatar } = formData;
-      console.log(avatar);
+      
 
       // Updating the user info with value from the input field
       updateProfile(auth.currentUser, {
@@ -102,20 +101,16 @@ const EditProfile = () => {
         phoneNumber: number,
         photoURL: avatar,
       });
-      const admin = userCredential.user;
-      // Spreading the value from the input field
-      const formDataCopy = { ...formData };
-      // Removing the password to save in DB for security reasons
-      delete formDataCopy.password;
-      formDataCopy.timestamp = serverTimestamp();
+      
+      const docRef = doc(db, "admin",currentUser.uid );
 
-      // Adding user to  database
-      await setDoc(doc(db, "admin", admin.uid), formDataCopy);
-      //   toast.success("Sign up was successful ");
+      await updateDoc(docRef, formData)
+      localStorage.setItem("user", JSON.stringify(auth.currentUser))
+      toast.success("Profile Update Successfully");
       navigate("/dashboard");
     } catch (error) {
       console.log(error.message);
-      //   toast.error("something went wrong with the registration");
+        toast.error(error.message);
     }
   };
 
@@ -131,7 +126,7 @@ const EditProfile = () => {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  : companyData.avatar
               }
               alt=""
               className=" h-[100px] rounded-full object-cover"
@@ -140,7 +135,7 @@ const EditProfile = () => {
           <form onSubmit={onSubmit}>
             <div className="w-[100%] cursor-pointer">
               <label className="flex items-center gap-[10px]" htmlFor="file">
-                Upload An Image
+                Change Image
                 <BsImage />
               </label>
               <input
@@ -150,7 +145,7 @@ const EditProfile = () => {
                 onChange={(e) => setFile(e.target.files[0])}
               />
             </div>
-
+                <label htmlFor="">Company Name</label>
             <input
               className="w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="text"
@@ -159,6 +154,7 @@ const EditProfile = () => {
               onChange={onChange}
               placeholder="Company Name"
             />
+            <label htmlFor="">Company Address</label>
             <input
               className="w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="text"
@@ -175,6 +171,7 @@ const EditProfile = () => {
               onChange={onChange}
               placeholder="Phone No"
             />
+            <label htmlFor="">Speciality</label>
             <input
               className="w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
               type="text"
@@ -184,21 +181,19 @@ const EditProfile = () => {
               placeholder="Speciality"
             />
 
-            <input
-              className="w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
-              type="email"
-              id="email"
-              value={email}
-              onChange={onChange}
-              placeholder="Email Address"
-            />
+            
 
-            <button
-              className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 hover:shadow-lg active:bg-blue-800 ease-in-out"
-              type="submit"
-            >
-              Sign Up
-            </button>
+<button
+                className={`w-[150px] p-[10px] border-none  text-white font-bold mt-[10px] ${
+                  percentage !== null
+                    ? "bg-teal-100 cursor-not-allowed"
+                    : "bg-teal-400"
+                }`}
+                type="submit"
+                disabled={percentage !== null && percentage < 100}
+              >
+                Update
+              </button>
           </form>
         </div>
       </div>
