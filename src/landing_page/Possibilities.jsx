@@ -1,5 +1,6 @@
 import { Card } from "@mui/material";
 import React from "react";
+import Cards from "./Cards";
 
 const Possibilities = () => {
   return (
@@ -14,11 +15,11 @@ const Possibilities = () => {
           management and create more engaging and efficient work place
         </p>
       </div>
-      <div>
-        <Card/>
-        <Card/>
-        <Card/>
-        <Card/>
+      <div className="flex gap-5">
+        <Cards icon='hggj' title=''subtitle='hgg'/>
+        <Cards/>
+        <Cards/>
+        <Cards/>
       </div>
     </div>
   );
