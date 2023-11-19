@@ -7,7 +7,7 @@ const SideBarLayOut = () => {
   return (
     <div>
       <div className='fixed top-0 left-0 right-0 z-10 bg-white'>
-        <Header/>
+        <Header title='search for employee'/>
       </div>
     <div className='flex'>
         <div className='fixed top-[5rem]'>

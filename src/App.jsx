@@ -38,15 +38,17 @@ import EmployeeTask from "./pages/employeeSection/EmployeeTask";
 import { Toaster } from "react-hot-toast";
 import Profile from "./pages/Profile";
 import EditProfile from "./pages/EditProfile";
+import EmployeeProfile from "./pages/employeeSection/EmployeeProfile";
+import EditEmployeeProfile from "./pages/employeeSection/EditEmployeeProfile";
 
 const App = () => {
   const [data, setData] = useState([]);
-  // const { currentUser } = useContext(AuthContext);
-  // const [isLoading, setIsLoading] = useState(false);
+  
   const [companyData, setCompanyData] = useState(null)
+  const [employeeData, setEmployeeData] = useState(null)
   const [isLoading,setIsLoading] = useState(true)
   const auth = getAuth()
-  // const userId = auth.currentUser.uid;
+
   const {currentUser} = useContext(AuthContext)
 
   useEffect(() => {
@@ -61,6 +63,22 @@ const App = () => {
       }
     }
     fetchAdminData();
+  }, []);
+
+  
+
+  useEffect(() => {
+    async function fetchEmployeeInfo() {
+      const docRef = doc(db, "employee", currentUser.uid);
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        setEmployeeData(docSnap.data());
+        setIsLoading(false)
+        
+      } else {
+      }
+    }
+    fetchEmployeeInfo();
   }, []);
 
   useEffect(() => {
@@ -99,7 +117,7 @@ const App = () => {
           <Route path="/loginOption" element={<LoginOption />} />
 
           <Route path="/dashboard" element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<DashBoard />} />
+            <Route path="/dashboard" element={<DashBoard data={data} />} />
           </Route>
           <Route path="employee" element={<ProtectedRoute />}>
             <Route
@@ -137,7 +155,7 @@ const App = () => {
             <Route path="edit-profile" element={<EditProfile companyData={companyData} isLoading={isLoading} />} />
           </Route>
 
-          <Route path="employeeDashboard" element={<EmployeeProtectedRoute />}>
+          <Route path="employeeDashboard" element={<EmployeeProtectedRoute employeeData={employeeData}/>}>
             <Route path="/employeeDashboard" element={<EmployeeDashBoard />} />
           </Route>
 
@@ -149,6 +167,10 @@ const App = () => {
           </Route>
           <Route path="employeeTask" element={<EmployeeProtectedRoute />}>
             <Route path="/employeeTask" element={<EmployeeTask />} />
+          </Route>
+          <Route path="employeeProfile" element={<EmployeeProtectedRoute />}>
+            <Route path="/employeeProfile" element={<EmployeeProfile employeeData={employeeData} isLoading={isLoading} />} />
+            <Route path="edit-employeeProfile" element={<EditEmployeeProfile employeeData={employeeData} />} />
           </Route>
         </Routes>
       </BrowserRouter>

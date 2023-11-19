@@ -9,13 +9,13 @@ import { GrSchedule } from "react-icons/gr";
 import TaskTable from '../components/TaskTable';
 
 
-const DashBoard = () => {
-  const auth = getAuth()
-  const {currentUser} = useContext(AuthContext)
+const DashBoard = ({data}) => {
+  console.log(data.length);
+  
   return (
     <>
     <div className='flex justify-around'>
-      <Widget title='Employee' link='see all employees' icon={<FaUser/>} number='100' color='red' />
+      <Widget title='Employee' link='see all employees' icon={<FaUser/>} number={data.length} color='red' />
       <Widget title='Attendance' link='see all attendance' icon={<GrSchedule/>} number='100' color='yellow' />
       <Widget title='Task' link='see all task' icon={<FaFolder/>} number='100' color='green'/>
       <Widget title='Finished' link='see all finished task' icon={<GiFinishLine/>} number='100' color='purple'/>

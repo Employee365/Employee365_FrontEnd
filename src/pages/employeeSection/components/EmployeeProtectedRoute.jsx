@@ -10,7 +10,7 @@ const EmployeeProtectedRoute = () => {
   const {currentUser} = useContext(AuthContext)
   
     
-  return currentUser ? <EmployeeSideBarLayOut/>:<Navigate to='/loginOption'/>
+  return currentUser ? <EmployeeSideBarLayOut />:<Navigate to='/loginOption'/>
 }
 
 export default EmployeeProtectedRoute

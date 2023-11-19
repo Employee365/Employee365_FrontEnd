@@ -1,45 +1,34 @@
-import React, { useState, useEffect, useContext } from "react";
-import { db } from "../firebase.config";
-import { BsImage } from "react-icons/bs";
-import { doc, serverTimestamp, setDoc } from "firebase/firestore";
-import {
-  createUserWithEmailAndPassword,
-  getAuth,
-  updateProfile,
-} from "firebase/auth";
-import {
-  getStorage,
-  ref,
-  uploadBytesResumable,
-  getDownloadURL,
-} from "firebase/storage";
-import { useNavigate } from "react-router-dom";
-import { AuthContext } from "../components/AuthContext";
-import { Toast } from "flowbite-react";
-import toast from "react-hot-toast";
+import { getAuth, updateProfile } from 'firebase/auth';
+import {BsImage} from 'react-icons/bs'
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../../components/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
+import { doc, updateDoc } from 'firebase/firestore';
+import { db } from '../../firebase.config';
+import toast from 'react-hot-toast';
 
-const NewEmployee = () => {
-  const [file, setFile] = useState("");
-  
-  const [percentage, setPercentage] = useState(null);
-  const auth = getAuth();
+const EditEmployeeProfile = ({employeeData}) => {
+    const auth = getAuth()
+  console.log(auth.currentUser);
+  const {currentUser} = useContext(AuthContext)
   const navigate = useNavigate();
-  const { currentUser } = useContext(AuthContext);
-  const adminId = currentUser.uid;
-
+  const [file, setFile] = useState();
+  const [percentage, setPercentage] = useState(null);
   const [formData, setFormData] = useState({
-    username: "",
-    FullName: "",
-    email: "",
-    password: "",
-    number: "",
-    address: "",
-    country: "",
-    department:"",
+    FullName: employeeData.FullName,
+    email: employeeData.email,
+    
+    address: employeeData.address,
+    number: employeeData.number,
+    department: employeeData.department,
+    username: employeeData.username,
+    country:employeeData.country
   });
-  const { username, FullName, email, password, address, country, number,department } =
-    formData;
 
+
+
+  const {  username, FullName, email,  address, country, number,department } = formData;
   useEffect(() => {
     const uploadFile = () => {
       const storage = getStorage();
@@ -78,52 +67,44 @@ const NewEmployee = () => {
         }
       );
     };
-    
+
     file && uploadFile();
   }, [file]);
-  const handleChange = (e) => {
+
+  const onChange = (e) => {
     setFormData((prev) => ({
       ...prev,
       [e.target.id]: e.target.value,
     }));
   };
-  const handleAdd = async (e) => {
+
+  const onSubmit = async (e) => {
     e.preventDefault();
+
     try {
-      const employeeAuth = getAuth();
-      const userCredential = await createUserWithEmailAndPassword(
-        employeeAuth,
-        email,
-        password
-      );
-      const {avatar} = formData
+     
+      const { avatar } = formData;
+      
 
-      updateProfile(auth.currentUser,{
-        displayName:FullName,
-        phoneNumber:number,
-        photoURL:avatar,
-        providerId: new Date().getTime()
+      // Updating the user info with value from the input field
+      updateProfile(auth.currentUser, {
+        displayName: FullName,
+        phoneNumber: number,
+        photoURL: avatar,
       });
-      const user = userCredential.user;
+      
+      const docRef = doc(db, "employee",currentUser.uid );
 
-      // Spreading the value from the input field
-      const formDataCopy = {
-        ...formData,
-        userRef: adminId,
-        id: new Date().getTime(),
-      };
-      // Removing the password to save in DB for security reasons
-      delete formDataCopy.password;
-      formDataCopy.timestamp = serverTimestamp();
-      await setDoc(doc(db, "employee", user.uid), formDataCopy);
-      employeeAuth.signOut();
-
-      navigate("/employee");
-      toast.success('Employee Created Successfully')
+      await updateDoc(docRef, formData)
+      localStorage.setItem("user", JSON.stringify(auth.currentUser))
+      toast.success("Profile Update Successfully");
+      navigate("/employeeDashboard");
     } catch (error) {
       console.log(error.message);
+        toast.error(error.message);
     }
   };
+
   return (
     <div className="p-[2rem]">
       <div className="">
@@ -138,7 +119,7 @@ const NewEmployee = () => {
               src={
                 file
                   ? URL.createObjectURL(file)
-                  : "https://icon-library.com/images/no-image-icon/no-image-icon-0.jpg"
+                  : employeeData.avatar
               }
               alt=""
               className=" h-[100px] rounded-full object-cover"
@@ -147,7 +128,7 @@ const NewEmployee = () => {
           <div className="right flex-1">
             <form
               className="flex flex-wrap justify-around gap-[20px]"
-              onSubmit={handleAdd}
+              onSubmit={onSubmit}
             >
               <div className="w-[40%] cursor-pointer">
                 <label className="flex items-center gap-[10px]" htmlFor="file">
@@ -172,7 +153,7 @@ const NewEmployee = () => {
                   value={username}
                   id="username"
                   required
-                  onChange={handleChange}
+                  onChange={onChange}
                   placeholder="john-doe"
                 />
               </div>
@@ -186,7 +167,7 @@ const NewEmployee = () => {
                   value={FullName}
                   id="FullName"
                   required
-                  onChange={handleChange}
+                  onChange={onChange}
                   placeholder="John DOe"
                 />
               </div>
@@ -200,7 +181,7 @@ const NewEmployee = () => {
                   value={department}
                   id="department"
                   required
-                  onChange={handleChange}
+                  onChange={onChange}
                   placeholder="Department"
                 />
               </div>
@@ -214,7 +195,7 @@ const NewEmployee = () => {
                   value={email}
                   id="email"
                   required
-                  onChange={handleChange}
+                  onChange={onChange}
                   placeholder="JohnDoe@gmail.com"
                 />
               </div>
@@ -228,23 +209,11 @@ const NewEmployee = () => {
                   value={number}
                   id="number"
                   required
-                  onChange={handleChange}
+                  onChange={onChange}
                   placeholder="+234 08181138489"
                 />
               </div>
-              <div className="w-[40%] border-b-2 border-gray-500">
-                <label className="flex items-center gap-[10px]" htmlFor="">
-                  Password
-                </label>
-                <input
-                  className="w-[100%] border-none"
-                  type="password"
-                  id="password"
-                  value={password}
-                  required
-                  onChange={handleChange}
-                />
-              </div>
+              
               <div className="w-[40%] border-b-2 border-gray-500">
                 <label className="flex items-center gap-[10px]" htmlFor="">
                   Address
@@ -255,7 +224,7 @@ const NewEmployee = () => {
                   id="address"
                   value={address}
                   required
-                  onChange={handleChange}
+                  onChange={onChange}
                   placeholder="23,Ogunjobi"
                 />
               </div>
@@ -270,7 +239,7 @@ const NewEmployee = () => {
                   value={country}
                   required
                   placeholder="Nigeria"
-                  onChange={handleChange}
+                  onChange={onChange}
                 />
               </div>
               <button
@@ -282,14 +251,15 @@ const NewEmployee = () => {
                 type="submit"
                 disabled={percentage !== null && percentage < 100}
               >
-                Send
+                Update
               </button>
             </form>
           </div>
         </div>
       </div>
     </div>
-  );
-};
 
-export default NewEmployee;
+  )
+}
+
+export default EditEmployeeProfile

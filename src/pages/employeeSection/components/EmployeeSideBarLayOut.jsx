@@ -8,7 +8,7 @@ const EmployeeSideBarLayOut = () => {
   return (
     <div>
       <div>
-        <Header/>
+        <Header title='Search for Task' />
       </div>
     <div className='flex'>
         <div className=''>

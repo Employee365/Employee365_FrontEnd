@@ -6,15 +6,18 @@ import { CiSettings } from "react-icons/ci";
 import { BsPersonVcard } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
 import { LuContact } from "react-icons/lu";
+import {RiLogoutBoxLine} from 'react-icons/ri'
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { AuthContext } from "../../../components/AuthContext";
 
 
 const EmployeeSideBar = () => {
+  
   const auth = getAuth();
   const navigate = useNavigate();
-  const {dispatch} = useContext(AuthContext)
+  const {dispatch,currentUser} = useContext(AuthContext)
+  console.log(currentUser.displayName);
   const onlogOut = () => {
     dispatch({type:'LOGOUT'})
     navigate("/loginOption");
@@ -25,10 +28,10 @@ const EmployeeSideBar = () => {
     <div className="bg-[#E0EBF4] w-max h-screen ">
       <div className="flex flex-col justify-around gap-5">
         <div className="flex gap-2 justify-center items-center px-[1rem] py-[0.5rem] rounded-md">
-          <img src={world} alt="" className="rounded-full w-[50px] h-[50px]" />
+          <img src={currentUser.photoURL} alt="" className="rounded-full w-[50px] h-[50px]" />
           <div>
-            <h3 className="font-bold text-sm">John Doe</h3>
-            <h3 className="text-[12px]"> Marketing Specialist</h3>
+            <h3 className="font-bold text-sm">{currentUser.displayName}</h3>
+            
           </div>
         </div>
 
@@ -58,7 +61,7 @@ const EmployeeSideBar = () => {
               <BsPersonVcard /> View Task
             </NavLink>
             
-            <NavLink to='schedule' className={({ isActive }) =>
+            {/* <NavLink to='schedule' className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
                   : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
@@ -66,7 +69,7 @@ const EmployeeSideBar = () => {
               
               <SlCalender />
               View Schedule
-            </NavLink>
+            </NavLink> */}
             <NavLink to='/employeeAttendance' className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
@@ -76,7 +79,7 @@ const EmployeeSideBar = () => {
               <SlCalender />
              Set Attendance
             </NavLink>
-            <NavLink to='schedule' className={({ isActive }) =>
+            {/* <NavLink to='schedule' className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
                   : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
@@ -84,13 +87,13 @@ const EmployeeSideBar = () => {
               
               <SlCalender />
              Request Leave
-            </NavLink>
+            </NavLink> */}
           </ul>
         </div>
 
         <div>
           <ul>
-            <NavLink to='profile' className={({ isActive }) =>
+            <NavLink to='/employeeProfile' className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
                   : "flex gap-4 items-center   py-[0.5rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
@@ -98,13 +101,16 @@ const EmployeeSideBar = () => {
               <CgProfile />
               Profile
             </NavLink>
-            <NavLink to='settings' className={({ isActive }) =>
+            <NavLink to='/loginOption'
+              className={({ isActive }) =>
                 isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.5rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.5rem] px-[1rem] mb-2  hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              } onClick={onlogOut}>
-              <CiSettings />
-              Setting
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.65rem] px-[1rem] mb-2  hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              }
+              onClick={onlogOut}
+            >
+              <RiLogoutBoxLine />
+              Log Out
             </NavLink>
           </ul>
         </div>
