@@ -14,37 +14,8 @@ import {
 import { getAuth } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
 
-const AttendanceTable = () => {
-  const [data, setData] = useState([]);
- 
+const AttendanceTable = ({attendance}) => {
   
-  const {currentUser} = useContext(AuthContext)
- 
-  useEffect(() => {
-    const fetchEmployeeData = async () => {
-      let list = [];
-      try {
-        const employeeRef = collection(db, "attendance");
-        const q = query(
-          employeeRef,
-          where("userRef", "==", currentUser.uid),
-          orderBy("timestamp", "desc")
-        );
-        const querrySnap = await getDocs(q);
-
-        querrySnap.forEach((doc) => {
-          return list.push({ id: doc.id, ...doc.data() });
-        });
-      
-        setData(list);
-      } catch (err) {
-      
-      }
-    };
-    fetchEmployeeData();
-  }, []);
-
-
   return (
     <div className="h-[90%] w-full">
       <div className="w-full font-[24px] text-gray-600 mb-[10px] flex items-center justify-between">
@@ -58,7 +29,7 @@ const AttendanceTable = () => {
         </Link>
       </div>
       <DataGrid
-        rows={data}
+        rows={attendance}
         columns={attendanceColumns}
         initialState={{
           pagination: {

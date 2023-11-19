@@ -1,10 +1,10 @@
 import React from 'react'
 import AttendanceTable from '../components/AttendanceTable'
 
-const Attendance = () => {
+const Attendance = ({attendance}) => {
   return (
     <div>
-        <AttendanceTable/>
+        <AttendanceTable attendance={attendance} />
     </div>
   )
 }

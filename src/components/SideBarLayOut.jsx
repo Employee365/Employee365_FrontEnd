@@ -10,11 +10,11 @@ const SideBarLayOut = () => {
         <Header title='search for employee'/>
       </div>
     <div className='flex'>
-        <div className='fixed top-[5rem]'>
+        <div className='fixed top-[5rem] z-[20]'>
 
         <SideBar />
         </div>
-        <main className='mt-[5rem] ml-[13rem] p-[2rem]  border-gray-200' >
+        <main className='mt-[5rem] ml-[13rem] p-[2rem]   border-gray-200' >
             <Outlet/>
         </main>
     </div>

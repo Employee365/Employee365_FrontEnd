@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Widget = ({title,icon,link,number,color}) => {
+const Widget = ({title,icon,link,number,color,linkAddress}) => {
   return (
     <div className='flex hover:bg-gradient-to-r from-sky-100 to-cyan-200 rounded-xl justify-between w-[250px] shadow-[0_3px_10px_rgb(0,0,0,0.2)] p-[1rem]'>
         <div className='flex flex-col gap-3 justify-between'>
             <h1 className='text-gray-400 uppercase font-semibold'>{title}</h1>
             <p className='text-[2rem]'>{number}</p>
-            <Link>
+            <Link to={linkAddress}>
                 <p className='text-sm underline capitalize text-gray-400 font-semibold'>{link}</p>
             </Link>
         </div>

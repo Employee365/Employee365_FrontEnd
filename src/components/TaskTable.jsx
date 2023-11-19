@@ -12,13 +12,13 @@ import {
   query,
   where,
 } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+
 import { AuthContext } from "./AuthContext";
 
 const TaskTable = () => {
-  const [data, setData] = useState([]);
+  const [task, setTask] = useState([]);
  
-  const auth = getAuth();
+
   const {currentUser} = useContext(AuthContext)
  
   useEffect(() => {
@@ -37,7 +37,7 @@ const TaskTable = () => {
           return list.push({ id: doc.id, ...doc.data() });
         });
        
-        setData(list);
+        setTask(list);
       } catch (err) {
         console.log(err);
       }
@@ -78,7 +78,7 @@ const TaskTable = () => {
     <div className="h-[90%] w-full">
       
       <DataGrid
-        rows={data}
+        rows={task}
         columns={taskColumns.concat(actionColumn)}
         initialState={{
           pagination: {
