@@ -24,7 +24,7 @@ const Logo = ({textSize=25,svgSize}) => {
             />
           </svg>
           <h1>
-            EMPLOYEE <span>365</span>
+            EMPLOYEE<span className='text-blue-400'>365</span>
           </h1>
         </div>
   )

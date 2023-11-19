@@ -4,6 +4,8 @@ import HeroSection from './HeroSection'
 import Partner from './Partner'
 import Demo from './Demo'
 import Possibilities from './Possibilities'
+import Footer from './Footer'
+
 
 const LandingPage = () => {
   return (
@@ -13,6 +15,7 @@ const LandingPage = () => {
     <Partner/>
     <Demo/>
     <Possibilities/>
+    <Footer/>
     </>
   )
 }
