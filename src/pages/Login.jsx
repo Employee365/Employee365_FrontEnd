@@ -38,7 +38,7 @@ const Login = () => {
       const user = userCredential.user;
       if (user) {
         dispatch({ type: "LOGIN", payload: user });
-        toast.success('Login Successfull')
+        toast.success('Login Successfully')
         navigate("/dashboard");
 
       }

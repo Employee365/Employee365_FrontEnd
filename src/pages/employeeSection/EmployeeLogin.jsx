@@ -80,10 +80,9 @@ const onSubmit = async (e) => {
               )}
             </div>
             <div className="flex justify-between whitespace-nowrap text-sm sm:text-lg">
-              <p className="mb-6">Don't have an account? <span className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out"><Link to='/sign-up'>Register</Link></span>
-              </p>
+
               <p className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out">
-                <Link to='/forgot-password'>Forgot Password</Link>
+                <Link to='/forgotPassword'>Forgot Password</Link>
               </p>
             </div>
             <button className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 hover:shadow-lg active:bg-blue-800 ease-in-out" type="submit">Sign In

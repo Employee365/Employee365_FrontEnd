@@ -43,17 +43,17 @@ import EditEmployeeProfile from "./pages/employeeSection/EditEmployeeProfile";
 
 const App = () => {
   const [data, setData] = useState([]);
+  const [task, setTask] = useState([]);
+  const [attendance, setAttendance] = useState([]);
   
   const [companyData, setCompanyData] = useState(null)
   const [employeeData, setEmployeeData] = useState(null)
   const [isLoading,setIsLoading] = useState(true)
-  const [attendance, setAttendance] = useState([]);
 
 
   const {currentUser} = useContext(AuthContext)
 
 
-  const [task, setTask] = useState([]);
 
  
 

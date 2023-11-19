@@ -18,6 +18,13 @@ const LoginOption = () => {
           </button>
           
             </Link>
+            <p className="font-bold">Dont have an account?</p>
+            <Link to='/SignUp'>
+
+            <button className=" bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 hover:shadow-lg active:bg-blue-800 ease-in-out" type="submit"> Sign UP
+          </button>
+          
+            </Link>
         </div>
       </div>
     </section>

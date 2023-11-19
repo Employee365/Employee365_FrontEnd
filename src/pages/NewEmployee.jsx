@@ -160,6 +160,7 @@ const NewEmployee = () => {
                   id="file"
                   style={{ display: "none" }}
                   onChange={(e) => setFile(e.target.files[0])}
+                  required
                 />
               </div>
               <div className="w-[40%] border-b-2 border-gray-500">

@@ -9,8 +9,13 @@ import {
 import { db } from "../firebase.config";
 import { serverTimestamp, setDoc, doc } from "firebase/firestore";
 import { BsImage } from "react-icons/bs";
-import { getDownloadURL, getStorage, ref, uploadBytesResumable } from "firebase/storage";
-// import { toast } from "react-toastify";
+import {
+  getDownloadURL,
+  getStorage,
+  ref,
+  uploadBytesResumable,
+} from "firebase/storage";
+import toast from "react-hot-toast";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -53,12 +58,9 @@ const SignUp = () => {
           }
         },
         (error) => {
-          // Handle unsuccessful uploads
           reject(error);
         },
         () => {
-          // Handle successful uploads on complete
-          // For instance, get the download URL: https://firebasestorage.googleapis.com/...
           getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
             setFormData((prev) => ({ ...prev, avatar: downloadURL }));
             setPercentage(null);
@@ -66,7 +68,7 @@ const SignUp = () => {
         }
       );
     };
-    
+
     file && uploadFile();
   }, [file]);
 
@@ -81,43 +83,39 @@ const SignUp = () => {
     e.preventDefault();
 
     try {
-      // FireBase Logic goes here
       const auth = getAuth();
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-      const {avatar} = formData
+      const { avatar } = formData;
       console.log(avatar);
 
-      // Updating the user info with value from the input field
       updateProfile(auth.currentUser, {
         displayName: name,
-        phoneNumber:number,
-        photoURL:avatar,
+        phoneNumber: number,
+        photoURL: avatar,
       });
       const admin = userCredential.user;
-      // Spreading the value from the input field
+
       const formDataCopy = { ...formData };
-      // Removing the password to save in DB for security reasons
+
       delete formDataCopy.password;
       formDataCopy.timestamp = serverTimestamp();
 
-      // Adding user to  database
       await setDoc(doc(db, "admin", admin.uid), formDataCopy);
-      //   toast.success("Sign up was successful ");
-      navigate("/dashboard");
+      toast.success('Sign Up Successfully')
+      navigate("/loginOption");
     } catch (error) {
-      console.log(error.message);
-      //   toast.error("something went wrong with the registration");
+      toast.error(error.message);
     }
   };
 
   return (
     <section>
       <h1 className="text-3xl text-center mt-6 font-bold ">
-        Create an account With us
+        Create an account With us as an Administrator
       </h1>
       <div className="flex justify-center flex-wrap items-center px-6 py-12 max-w-6xl mx-auto gap-20 ">
         <div className="w-full md:w-[67%] lg:w-[40%] p-[2rem] shadow-[rgba(17,_17,_26,_0.1)_0px_0px_16px]">
@@ -136,13 +134,14 @@ const SignUp = () => {
             <div className="w-[100%] cursor-pointer">
               <label className="flex items-center gap-[10px]" htmlFor="file">
                 Upload An Image
-                <BsImage  />
+                <BsImage />
               </label>
               <input
                 className="w-full mb-6 px-4 py-2 text-xl text-gray-700 bg-white border-gray-300 rounded transition ease-in-out"
                 type="file"
                 id="file"
                 onChange={(e) => setFile(e.target.files[0])}
+                required
               />
             </div>
 
@@ -215,7 +214,6 @@ const SignUp = () => {
                   <Link to="/sign-up">Log In</Link>
                 </span>
               </p>
-              
             </div>
             <button
               className="w-full bg-blue-600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 hover:shadow-lg active:bg-blue-800 ease-in-out"

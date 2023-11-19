@@ -78,22 +78,16 @@ const SideBar = () => {
               Attendance
             </NavLink>
             <NavLink
-              to="candidate"
-              className={({ isActive }) =>
-                isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              }
+              to="/dashboard"
+              className= "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              
             >
               <LuContact /> Candidate
             </NavLink>
             <NavLink
               to="/dashboard"
-              className={({ isActive }) =>
-                isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              }
+              className= "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              
             >
               <SlCalender />
               Schedule set
@@ -101,11 +95,8 @@ const SideBar = () => {
            
             <NavLink
               to="/dashboard"
-              className={({ isActive }) =>
-                isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              }
+              className= "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              
             >
               <SlCalender />
               Leave
