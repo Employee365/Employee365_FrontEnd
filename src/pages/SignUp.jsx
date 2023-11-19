@@ -211,7 +211,7 @@ const SignUp = () => {
               <p className="mb-6">
                 Have an account?{" "}
                 <span className="text-green-600 hover:text-green-700 transition duration-200 ease-in-out">
-                  <Link to="/signUp">Log In</Link>
+                  <Link to="/loginOption">Log In</Link>
                 </span>
               </p>
             </div>
