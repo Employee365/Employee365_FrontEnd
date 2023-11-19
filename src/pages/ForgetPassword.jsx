@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-// import { toast } from "react-toastify";
+import { Link, useNavigate } from "react-router-dom";
 import { getAuth, sendPasswordResetEmail } from "firebase/auth";
+import toast from "react-hot-toast";
 
 const ForgotPassword = () => {
   const [email, setEmail] = useState('');
-
+  const navigate = useNavigate()
   const onChange = (e) => {
     setEmail(e.target.value);
   };
@@ -15,10 +15,11 @@ const ForgotPassword = () => {
     try{
       const auth = getAuth()
       await sendPasswordResetEmail(auth,email)
-    //   toast.success("Email was sent")
+      toast.success("Email was sent successfully")
+      navigate('/loginOption')
 
     }catch(error){
-    //   toast.error("Could'nt not send reset password")
+      toast.error(error.message)
     }
   };
   return (
@@ -41,7 +42,7 @@ const ForgotPassword = () => {
               <p className="mb-6">
                 Don't have a account?
                 <Link
-                  to="/sign-up"
+                  to="/signUp"
                   className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out ml-1"
                 >
                   Register
@@ -49,7 +50,7 @@ const ForgotPassword = () => {
               </p>
               <p>
                 <Link
-                  to="/sign-in"
+                  to="/loginOption"
                   className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out"
                 >
                   Sign in instead
@@ -57,7 +58,7 @@ const ForgotPassword = () => {
               </p>
             </div>
             <button
-              className="w-full -600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
+              className="w-full -600 text-white px-7 py-3 text-sm font-medium uppercase rounded shadow-md bg-blue-600 hover:bg-blue-700 transition duration-150 ease-in-out hover:shadow-lg active:bg-blue-800"
               type="submit"
             >
               Send reset password

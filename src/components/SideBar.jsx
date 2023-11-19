@@ -10,6 +10,7 @@ import { RiLogoutBoxLine } from "react-icons/ri";
 import { NavLink, useNavigate } from "react-router-dom";
 import { getAuth } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
+import Loader from "./Loader";
 
 const SideBar = () => {
   const auth = getAuth();
@@ -21,7 +22,6 @@ const SideBar = () => {
   };
 
 
-  
 
   return (
     <div className="bg-[#E0EBF4] w-max ">
@@ -30,7 +30,7 @@ const SideBar = () => {
           <img src={currentUser.photoURL} alt="" className="rounded-full border-2 border-gray-300 w-[50px] h-[50px]" />
           <div>
             <h3 className="font-bold text-sm">{currentUser.displayName}</h3>
-            <h3 className="text-[12px]"> Marketing Specialist</h3>
+            {/* <h3 className="text-[12px]"> {companyData.speciality}</h3> */}
           </div>
         </div>
 
@@ -67,27 +67,6 @@ const SideBar = () => {
               <BsPersonVcard /> Task Management
             </NavLink>
             <NavLink
-              to="candidate"
-              className={({ isActive }) =>
-                isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              }
-            >
-              <LuContact /> Candidate
-            </NavLink>
-            <NavLink
-              to="schedule"
-              className={({ isActive }) =>
-                isActive
-                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
-                  : "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
-              }
-            >
-              <SlCalender />
-              Schedule set
-            </NavLink>
-            <NavLink
               to="/attendance"
               className={({ isActive }) =>
                 isActive
@@ -99,7 +78,29 @@ const SideBar = () => {
               Attendance
             </NavLink>
             <NavLink
-              to="schedule"
+              to="candidate"
+              className={({ isActive }) =>
+                isActive
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              }
+            >
+              <LuContact /> Candidate
+            </NavLink>
+            <NavLink
+              to="/dashboard"
+              className={({ isActive }) =>
+                isActive
+                  ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"
+                  : "flex gap-4 items-center   py-[0.65rem] px-[1rem] hover:bg-white hover:text-blue-400 transition-all ease-in-out duration-150"
+              }
+            >
+              <SlCalender />
+              Schedule set
+            </NavLink>
+           
+            <NavLink
+              to="/dashboard"
               className={({ isActive }) =>
                 isActive
                   ? " flex gap-4 items-center bg-white w-[100%] py-[0.65rem] px-[1rem] border-l-[5px] border-blue-400 text-blue-400 font-semibold"

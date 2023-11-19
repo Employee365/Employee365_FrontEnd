@@ -87,11 +87,11 @@ const Login = () => {
               <p className="mb-6">
                 Don't have an account?{" "}
                 <span className="text-red-600 hover:text-red-700 transition duration-200 ease-in-out">
-                  <Link to="/sign-up">Register</Link>
+                  <Link to="/signUp">Register</Link>
                 </span>
               </p>
               <p className="text-blue-600 hover:text-blue-800 transition duration-200 ease-in-out">
-                <Link to="/forgot-password">Forgot Password</Link>
+                <Link to="/forgotPassword">Forgot Password</Link>
               </p>
             </div>
             <button

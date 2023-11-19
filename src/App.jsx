@@ -53,7 +53,36 @@ const App = () => {
   const {currentUser} = useContext(AuthContext)
 
 
+  const [task, setTask] = useState([]);
+
  
+
+  // const {currentUser} = useContext(AuthContext)
+ 
+  useEffect(() => {
+    const fetchEmployeeTask = async () => {
+      let list = [];
+      try {
+        const employeeRef = collection(db, "tasks");
+        const q = query(
+          employeeRef,
+          where("userRef", "==", currentUser.uid),
+          orderBy("timestamp", "desc")
+        );
+        const querrySnap = await getDocs(q);
+
+        querrySnap.forEach((doc) => {
+          return list.push({ id: doc.id, ...doc.data() });
+        });
+       
+        setTask(list);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+    fetchEmployeeTask();
+  }, []);
+
   
  
   useEffect(() => {
@@ -142,11 +171,11 @@ const App = () => {
           <Route path="/adminLogin" element={<Login />} />
           <Route path="/signUp" element={<SignUp />} />
           <Route path="/employeeLogin" element={<EmployeeLogin />} />
-          <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/loginOption" element={<LoginOption />} />
 
-          <Route path="/dashboard" element={<ProtectedRoute />}>
-            <Route path="/dashboard" element={<DashBoard data={data} attendance={attendance} />} />
+          <Route path="/dashboard" element={<ProtectedRoute companyData={companyData} isLoading={isLoading} />}>
+            <Route path="/dashboard" element={<DashBoard data={data} attendance={attendance} task={task} />} />
           </Route>
           <Route path="employee" element={<ProtectedRoute />}>
             <Route

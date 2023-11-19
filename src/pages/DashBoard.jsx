@@ -9,16 +9,17 @@ import { GrSchedule } from "react-icons/gr";
 import TaskTable from '../components/TaskTable';
 
 
-const DashBoard = ({data,attendance}) => {
-  
+const DashBoard = ({data,attendance,task}) => {
+  const completed = task.filter((done)=> done.status === "Done")
+console.log(completed.length);  
   
   return (
     <>
     <div className='flex justify-around'>
       <Widget title='Employee' linkAddress='/employee' link='see all employees' icon={<FaUser/>} number={data.length} color='red' />
       <Widget title='Attendance' linkAddress='/attendance' link='see all attendance' icon={<GrSchedule/>} number={attendance.length} color='yellow' />
-      <Widget title='Task' linkAddress='/task' link='see all task' icon={<FaFolder/>} number='100' color='green'/>
-      <Widget title='Finished'   icon={<GiFinishLine/>} number='100' color='purple'/>
+      <Widget title='Task' linkAddress='/task' link='see all task' icon={<FaFolder/>} number={task.length} color='green'/>
+      <Widget title='Finished'   icon={<GiFinishLine/>} number={completed.length} color='purple'/>
     </div>
     <div className='mt-[3rem]'>
       <h1 className='text-gray-400 text-xl uppercase mb-5 underline'>Recently Updated Task</h1>

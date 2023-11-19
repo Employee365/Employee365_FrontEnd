@@ -22,7 +22,7 @@ const TaskTable = () => {
   const {currentUser} = useContext(AuthContext)
  
   useEffect(() => {
-    const fetchEmployeeData = async () => {
+    const fetchEmployeeTask = async () => {
       let list = [];
       try {
         const employeeRef = collection(db, "tasks");
@@ -42,7 +42,7 @@ const TaskTable = () => {
         console.log(err);
       }
     };
-    fetchEmployeeData();
+    fetchEmployeeTask();
   }, []);
 
   const handleDelete = async (id) => {

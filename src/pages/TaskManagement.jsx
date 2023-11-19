@@ -2,7 +2,7 @@ import React from 'react'
 import TaskTable from '../components/TaskTable'
 import { Link } from 'react-router-dom'
 
-const TaskManagement = ({task}) => {
+const TaskManagement = () => {
   return (
     <div>
       <div className="w-full font-[24px] text-gray-600 mb-[10px] flex items-center justify-between">
@@ -15,7 +15,7 @@ const TaskManagement = ({task}) => {
           Add New
         </Link>
       </div>
-        <TaskTable task={task}/>
+        <TaskTable />
     </div>
   )
 }

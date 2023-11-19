@@ -1,21 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import { db } from "../firebase.config";
 import { DataGrid } from "@mui/x-data-grid";
-import { attendanceColumns,  } from "../FakeData";
+import { attendanceColumns } from "../FakeData";
 import { Link } from "react-router-dom";
-import {
-  collection,
-  
-  getDocs,
-  orderBy,
-  query,
-  where,
-} from "firebase/firestore";
+import { collection, getDocs, orderBy, query, where } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 import { AuthContext } from "./AuthContext";
 
-const AttendanceTable = ({attendance}) => {
-  
+const AttendanceTable = ({ attendance }) => {
   return (
     <div className="h-[90%] w-full">
       <div className="w-full font-[24px] text-gray-600 mb-[10px] flex items-center justify-between">
