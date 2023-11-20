@@ -3,27 +3,29 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const ContainerVariant = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
 
   return (
     <>
-      <motion.header className="ss:py-[3rem] px-[2rem]  bg-[#E0EBF4] sm:py-[1rem] md: flex justify-between items-center "
-      variants={ContainerVariant}
-      initial='hidden'
-      animate = 'visible'
-      transition={{ duration: 0.5, delay: 0.10 }}>
+      <motion.header
+        className="ss:py-[3rem] px-[2rem]  bg-[#E0EBF4] sm:py-[1rem] md: flex justify-between items-center "
+        variants={ContainerVariant}
+        initial="hidden"
+        animate="visible"
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
         <div className="text-[30px] md:hidden" onClick={() => setIsOpen(true)}>
           <GiHamburgerMenu />
         </div>
 
-        <Logo/>
+        <Logo />
 
         <div className=" ">
           <ul className="ss:hidden md:flex gap-6 text-[25px] cursor-pointer font-normal">
@@ -34,7 +36,10 @@ const Header = () => {
         </div>
 
         <div>
-          <Link to='/loginOption' className="ss:text-[15px] sm:text-[25px] font-bold ss:rounded-[10px]  sm:rounded-[15px] bg-white shadow-4xl ss:py-[7px] ss:px-[20px]   sm:py-[10px] sm:px-[50px] inline-block hover:bg-gray-50 transition-all ease-in-out duration-150">
+          <Link
+            to="/loginOption"
+            className="ss:text-[15px] sm:text-[25px] font-bold ss:rounded-[10px]  sm:rounded-[15px] bg-white shadow-4xl ss:py-[7px] ss:px-[20px]   sm:py-[10px] sm:px-[50px] inline-block hover:bg-gray-50 transition-all ease-in-out duration-150"
+          >
             Login
           </Link>
         </div>
@@ -50,9 +55,15 @@ const Header = () => {
               <FaTimes />
             </button>
             <ul className=" text-[25px] mt-[10rem] cursor-pointer font-normal">
-              <li className="text-[#0C6CAC] mb-6 "><a href="#home">Home</a> </li>
-              <li className="mb-6"><a href="#pricing">Pricing</a></li>
-              <li><a href="#product">Product</a></li>
+              <li className="text-[#0C6CAC] mb-6 ">
+                <a href="#home">Home</a>{" "}
+              </li>
+              <li className="mb-6">
+                <a href="#pricing">Pricing</a>
+              </li>
+              <li>
+                <a href="#product">Product</a>
+              </li>
             </ul>
           </div>
         </aside>

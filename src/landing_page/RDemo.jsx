@@ -1,24 +1,26 @@
 import React from "react";
 import frame131 from "./assets/Frame131.png";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 
 const RDemo = () => {
   const containerVariant = {
     hidden: { opacity: 0, x: 75, y: 75 },
     visible: { opacity: 1, x: 0, y: 0 },
-  }
+  };
   return (
-<>
-    <motion.div className="bg-[#E0EBF4] py-[6rem] px-[7rem]"
-    variants={containerVariant}
-    initial='hidden'
-    whileInView='visible'
-    transition={{ duration: 0.5, delay: 0.10 }}>
+    <>
+      <motion.div
+        className="bg-[#E0EBF4] py-[6rem] px-[7rem]"
+        variants={containerVariant}
+        initial="hidden"
+        whileInView="visible"
+        transition={{ duration: 0.5, delay: 0.1 }}
+      >
         <div>
-            <img src={frame131} alt="" />
+          <img src={frame131} alt="" />
         </div>
-    </motion.div>
-    {/* <div className="bg-[#E0EBF4] py-[6rem] px-[7rem]">
+      </motion.div>
+      {/* <div className="bg-[#E0EBF4] py-[6rem] px-[7rem]">
       <div className="bg-white  flex px-[2rem] py-[6rem] rounded-2xl">
         <div className="w-[50%]">
           <h1 className="font-extrabold text-4xl">Experiences with Online salary administration</h1>

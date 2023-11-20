@@ -51,7 +51,7 @@ const Footer = () => {
               variants={wordVariant}
               initial="hidden"
               whileInView="visible"
-              transition={{ duration: 0.5, delay: 0.1 }} 
+              transition={{ duration: 0.5, delay: 0.1 }}
             >
               Guidebook
             </motion.li>
@@ -94,11 +94,13 @@ const Footer = () => {
           >
             Stay in the loop
           </motion.h1>
-          <motion.p className="mt-[1rem] text-[1.3rem] text-gray-400"
-              variants={wordVariant}
-              initial="hidden"
-              whileInView="visible"
-              transition={{ duration: 0.5, delay: 0.1 }}>
+          <motion.p
+            className="mt-[1rem] text-[1.3rem] text-gray-400"
+            variants={wordVariant}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
             {" "}
             Learn how other companies are doing their service
           </motion.p>

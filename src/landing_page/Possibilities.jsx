@@ -5,28 +5,32 @@ import { MdOutlineSecurity } from "react-icons/md";
 import { GiEternalLove } from "react-icons/gi";
 import { BsCircleHalf } from "react-icons/bs";
 import { MdPeopleAlt } from "react-icons/md";
-import {motion} from 'framer-motion'
+import { motion } from "framer-motion";
 const Possibilities = () => {
   const wordVariant = {
     hidden: { opacity: 0, y: -20 },
     visible: { opacity: 1, y: 0 },
-  }
+  };
   return (
     <div className="bg-[#E0EBF4] py-[6rem] px-[7rem]">
       <div className="text-center ">
-        <motion.h1 className="text-[2rem] font-[900]"
-        variants={wordVariant}
-        initial='hidden'
-        whileInView='visible'
-        transition={{ duration: 0.5, delay: 0.10 }}>
+        <motion.h1
+          className="text-[2rem] font-[900]"
+          variants={wordVariant}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           Endless Possibilities with Employee
           <span className="text-blue-400">365</span>
         </motion.h1>
-        <motion.p className="text-[19px]"
-        variants={wordVariant}
-        initial='hidden'
-        whileInView='visible'
-        transition={{ duration: 0.5, delay: 0.10 }}>
+        <motion.p
+          className="text-[19px]"
+          variants={wordVariant}
+          initial="hidden"
+          whileInView="visible"
+          transition={{ duration: 0.5, delay: 0.1 }}
+        >
           Employee365 offers a wide range of possibilities to enhance HR
           management and create more engaging and efficient work place
         </motion.p>
@@ -43,7 +47,7 @@ const Possibilities = () => {
             icon={<MdOutlineSecurity />}
             title="Data Security and Compliance"
             subtitle="Employee365 follows data protection regulations like GDPR addressing data security concerns by safeguarding sensitive employee information"
-            color='bg-[#E0EBF4]'
+            color="bg-[#E0EBF4]"
           />
         </div>
         <div className="absolute  left-[50%]">
