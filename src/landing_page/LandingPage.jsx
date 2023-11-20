@@ -9,9 +9,12 @@ import Testimonial from './Testimonial'
 import RDemo from './RDemo'
 
 
+
+
 const LandingPage = () => {
   return (
     <>
+    <div className='overflow-hidden'>
     <Header/>
     <HeroSection/>
     <Partner/>
@@ -20,6 +23,7 @@ const LandingPage = () => {
     <Testimonial/>
     <RDemo/>
     <Footer/>
+    </div>
     </>
   )
 }

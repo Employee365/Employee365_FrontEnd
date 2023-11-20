@@ -5,19 +5,31 @@ import { MdOutlineSecurity } from "react-icons/md";
 import { GiEternalLove } from "react-icons/gi";
 import { BsCircleHalf } from "react-icons/bs";
 import { MdPeopleAlt } from "react-icons/md";
-
+import {motion} from 'framer-motion'
 const Possibilities = () => {
+  const wordVariant = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+  }
   return (
     <div className="bg-[#E0EBF4] py-[6rem] px-[7rem]">
       <div className="text-center ">
-        <h1 className="text-[2rem] font-[900]">
+        <motion.h1 className="text-[2rem] font-[900]"
+        variants={wordVariant}
+        initial='hidden'
+        whileInView='visible'
+        transition={{ duration: 0.5, delay: 0.10 }}>
           Endless Possibilities with Employee
           <span className="text-blue-400">365</span>
-        </h1>
-        <p className="text-[19px]">
+        </motion.h1>
+        <motion.p className="text-[19px]"
+        variants={wordVariant}
+        initial='hidden'
+        whileInView='visible'
+        transition={{ duration: 0.5, delay: 0.10 }}>
           Employee365 offers a wide range of possibilities to enhance HR
           management and create more engaging and efficient work place
-        </p>
+        </motion.p>
       </div>
       <div className="flex gap-5 h-[400px] relative mt-[3rem]">
         <Cards

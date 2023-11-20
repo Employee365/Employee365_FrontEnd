@@ -1,8 +1,12 @@
 import React, { useState } from "react";
-import Logo from "../components/Logo";
+import { motion } from "framer-motion";
 
 const Footer = () => {
-  const [formData,setFormData] = useState('')
+  const [formData, setFormData] = useState("");
+  const wordVariant = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+  };
   return (
     <div className="bg-[#333333] p-[5rem] text-white ">
       <div className="flex justify-center items-center">
@@ -32,20 +36,80 @@ const Footer = () => {
         </h1>
       </div>
       <div className="grid grid-cols-4">
-      <div className="font-bold text-[1.5rem] col-span-1">
-        <h1>Company</h1>
-        <ul className="mt-[2rem]  text-[1.3rem] flex flex-col gap-5 text-gray-400">
-          <li className="hover:text-gray-700 cursor-pointer">Guidebook</li>
-          <li className="hover:text-gray-700 cursor-pointer">Pricing</li>
-          <li className="hover:text-gray-700 cursor-pointer">Answers</li>
-          <li className="hover:text-gray-700 cursor-pointer">Employee365 Apps</li>
-        </ul>
-      </div>
-      <div className="col-span-3 ">
-        <h1 className="font-bold text-[1.5rem]">Stay in the loop</h1>
-        <p className="mt-[1rem] text-[1.3rem] text-gray-400"> Learn how other companies are doing their service</p>
-        <input type="text" placeholder="Enter Mail" className="mt-[2rem] font-bold rounded-3xl w-[60%] text-black" value={formData} onChange={(e) => setFormData(e.target.value)}  />
-      </div>
+        <div className="font-bold text-[1.5rem] col-span-1">
+          <motion.h1
+            variants={wordVariant}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Company
+          </motion.h1>
+          <ul className="mt-[2rem]  text-[1.3rem] flex flex-col gap-5 text-gray-400">
+            <motion.li
+              className="hover:text-gray-700 cursor-pointer"
+              variants={wordVariant}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.5, delay: 0.1 }} 
+            >
+              Guidebook
+            </motion.li>
+            <motion.li
+              className="hover:text-gray-700 cursor-pointer"
+              variants={wordVariant}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Pricing
+            </motion.li>
+            <motion.li
+              className="hover:text-gray-700 cursor-pointer"
+              variants={wordVariant}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Answers
+            </motion.li>
+            <motion.li
+              className="hover:text-gray-700 cursor-pointer"
+              variants={wordVariant}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              Employee365 Apps
+            </motion.li>
+          </ul>
+        </div>
+        <div className="col-span-3 ">
+          <motion.h1
+            className="font-bold text-[1.5rem]"
+            variants={wordVariant}
+            initial="hidden"
+            whileInView="visible"
+            transition={{ duration: 0.5, delay: 0.1 }}
+          >
+            Stay in the loop
+          </motion.h1>
+          <motion.p className="mt-[1rem] text-[1.3rem] text-gray-400"
+              variants={wordVariant}
+              initial="hidden"
+              whileInView="visible"
+              transition={{ duration: 0.5, delay: 0.1 }}>
+            {" "}
+            Learn how other companies are doing their service
+          </motion.p>
+          <input
+            type="text"
+            placeholder="Enter Mail"
+            className="mt-[2rem] font-bold rounded-3xl w-[60%] text-black"
+            value={formData}
+            onChange={(e) => setFormData(e.target.value)}
+          />
+        </div>
       </div>
     </div>
   );

@@ -3,13 +3,22 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { FaTimes } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
+import {motion} from 'framer-motion'
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const ContainerVariant = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { opacity: 1, y: 0 },
+  }
 
   return (
     <>
-      <header className="ss:py-[3rem] px-[2rem]  bg-[#E0EBF4] sm:py-[1rem] md: flex justify-between items-center ">
+      <motion.header className="ss:py-[3rem] px-[2rem]  bg-[#E0EBF4] sm:py-[1rem] md: flex justify-between items-center "
+      variants={ContainerVariant}
+      initial='hidden'
+      animate = 'visible'
+      transition={{ duration: 0.5, delay: 0.10 }}>
         <div className="text-[30px] md:hidden" onClick={() => setIsOpen(true)}>
           <GiHamburgerMenu />
         </div>
@@ -29,7 +38,7 @@ const Header = () => {
             Login
           </Link>
         </div>
-      </header>
+      </motion.header>
 
       {isOpen && (
         <aside className="fixed top-[0] overflow-visible z-20 w-[80vw] bg-white transform transition-transform duration-300 ease-in-out translate-20 ">
