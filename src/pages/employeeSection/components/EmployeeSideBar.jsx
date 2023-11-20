@@ -17,7 +17,7 @@ const EmployeeSideBar = () => {
   const auth = getAuth();
   const navigate = useNavigate();
   const {dispatch,currentUser} = useContext(AuthContext)
-  console.log(currentUser.displayName);
+
   const onlogOut = () => {
     dispatch({type:'LOGOUT'})
     navigate("/loginOption");

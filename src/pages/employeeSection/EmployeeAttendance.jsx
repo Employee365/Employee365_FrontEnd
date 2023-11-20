@@ -90,8 +90,9 @@ const EmployeeAttendance = () => {
 
       formDataCopy.timestamp = serverTimestamp();
       const docRef = await addDoc(collection(db, "attendance"), formDataCopy);
-
-      navigate("/task");
+toast.success('Attendance added successfully')
+      navigate("/employeeDashboard");
+      
     } catch (error) {
       console.log(error.message);
     }
@@ -186,7 +187,7 @@ const EmployeeAttendance = () => {
                 className="w-[150px] h-[50px] p-[10px] rounded-xl hover:bg-teal-700 transition-all ease-in-out duration-200  text-white font-bold bg-teal-400"
                 type="submit"
               >
-                Add Task
+                Add Attendance
               </button>
             </form>
           </div>

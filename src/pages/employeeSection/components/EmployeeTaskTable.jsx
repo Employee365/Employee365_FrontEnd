@@ -26,12 +26,12 @@ const EmployeeTaskTable = () => {
   const [isInView, setIsInView] = useState(false);
   const [id, setId] = useState("");
   const navigate = useNavigate()
-  const auth = getAuth();
+
 
   const [formData, setFormData] = useState({});
   const { status,taskName,description } = formData;
   const {currentUser} = useContext(AuthContext)
-  console.log(currentUser.displayName);
+ 
 
   const handleChange = (e) => {
     setFormData((prev) => ({
@@ -41,9 +41,7 @@ const EmployeeTaskTable = () => {
   };
 
   useEffect(() => {
-    console.log(
-      'useEffect'
-    );
+   
     const fetchEmployee = async () => {
       let list = [];
       try {
@@ -58,11 +56,9 @@ const EmployeeTaskTable = () => {
         querrySnap.forEach((doc) => {
           return list.push({ id: doc.id, ...doc.data() });
         });
-        console.log(list);
+        
         setData(list);
-        console.log(
-          'useEffect2'
-        );
+        
       } catch (err) {
         console.log('error',err.message);
       }
@@ -87,7 +83,7 @@ const EmployeeTaskTable = () => {
     try {
       await deleteDoc(doc(db, "tasks", id));
       setData(data.filter((item) => item.id !== id));
-      console.log(id);
+     
     } catch (err) {
       console.log(err);
     }

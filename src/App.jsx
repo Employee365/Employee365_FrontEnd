@@ -76,6 +76,7 @@ const App = () => {
         });
        
         setTask(list);
+        
       } catch (err) {
         console.log(err);
       }
@@ -143,7 +144,7 @@ const App = () => {
     const fetchEmployeeData = async () => {
       let list = [];
       try {
-        setIsLoading(true);
+        
         const employeeRef = collection(db, "employee");
         const q = query(
           employeeRef,
@@ -157,11 +158,11 @@ const App = () => {
         });
 
         setData(list);
-        setIsLoading(false);
+       
       } catch (err) {}
     };
     fetchEmployeeData();
-  }, []);
+  }, [currentUser]);
 
   return (
     <div>

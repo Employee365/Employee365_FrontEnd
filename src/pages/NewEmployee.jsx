@@ -116,8 +116,7 @@ const NewEmployee = () => {
       delete formDataCopy.password;
       formDataCopy.timestamp = serverTimestamp();
       await setDoc(doc(db, "employee", user.uid), formDataCopy);
-      employeeAuth.signOut();
-
+    
       navigate("/employee");
       toast.success('Employee Created Successfully')
     } catch (error) {

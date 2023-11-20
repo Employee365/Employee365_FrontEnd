@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom'
 
 
 const EmployeeProfile = ({employeeData,isLoading}) => {
-    console.log(employeeData);
+  
   
 if(isLoading){
   return <Loader/>

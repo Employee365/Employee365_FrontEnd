@@ -6,13 +6,13 @@ import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase.config";
 
 const EmployeesTable = ({data,setData}) => {
- console.log(data);
-console.log('id',data.id);
+
+
   const handleDelete = async (id) => {
     try {
       await deleteDoc(doc(db, "employee", id));
       setData(data.filter((item) => item.id !== id));
-      console.log(id);
+     
     } catch (err) {
       console.log(err);
     }
@@ -23,7 +23,7 @@ console.log('id',data.id);
       headerName: "Action",
       width: 150,
       renderCell: (params) => {
-        console.log(params.id);
+       
         return (
           <div key={params.id} className="flex items-center gap-3">
             <Link to={`/employee/${params.id}`}>
