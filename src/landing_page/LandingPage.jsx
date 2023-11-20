@@ -5,6 +5,8 @@ import Partner from './Partner'
 import Demo from './Demo'
 import Possibilities from './Possibilities'
 import Footer from './Footer'
+import Testimonial from './Testimonial'
+import RDemo from './RDemo'
 
 
 const LandingPage = () => {
@@ -15,6 +17,8 @@ const LandingPage = () => {
     <Partner/>
     <Demo/>
     <Possibilities/>
+    <Testimonial/>
+    <RDemo/>
     <Footer/>
     </>
   )
